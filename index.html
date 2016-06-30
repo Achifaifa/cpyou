@@ -7,10 +7,10 @@
     
     <b>Registers</b><br/>
 
-    A: 00000000<br/>
-    B: 00000000<br/>
-    C: 00000000<br/>
-    I: 00000000<br/>
+    <input type="submit" value="A">: 00000000<br/>
+    <input type="submit" value="B">: 00000000<br/>
+    <input type="submit" value="C">: 00000000<br/>
+    <input type="submit" value="R">: 00000000<br/>
 
     <br/><b>Flags</b><br/>
     1: [0] 2: [0] 3: [0] 4: [0]<br/>
@@ -19,6 +19,9 @@
     <br/><br/>
 
     <div id="instructions">
+
+      <input type="submit" value="RUN"> [MOV] [A] [M0x8]<br/><br/>
+
       <input type="submit" value="MOV">
       <input type="submit" value="ADD">
       <input type="submit" value="SUB">
@@ -26,9 +29,10 @@
       <input type="submit" value="POP"><br/>
       <input type="submit" value="CMP">
       <input type="submit" value="JMP">
-      <input type="submit" value="***">
-      <input type="submit" value="***">
+      <input type="submit" value="SHL">
+      <input type="submit" value="SHR">
       <input type="submit" value="NOP"><br/>
+
     </div>
   </div>
   
@@ -54,21 +58,42 @@
 
   <div id="memory">
     <h4>Memory Banks</h4>
-    0x0: 00000000<br/>
-    0x1: 00000000<br/>
-    0x2: 00000000<br/>
-    0x3: 00000000<br/>
-    0x4: 00000000<br/>
-    0x5: 00000000<br/>
-    0x6: 00000000<br/>
-    0x7: 00000000<br/>
-    0x8: 00000000<br/>
-    0x9: 00000000<br/>
-    0xA: 00000000<br/>
-    0xB: 00000000<br/>
-    0xC: 00000000<br/>
-    0xD: 00000000<br/>
-    0xE: 00000000<br/>
-    0xF: 00000000<br/>
+    <input type="submit" value="0x0">: 00000000<br/>
+    <input type="submit" value="0x1">: 00000000<br/>
+    <input type="submit" value="0x2">: 00000000<br/>
+    <input type="submit" value="0x3">: 00000000<br/>
+    <input type="submit" value="0x4">: 00000000<br/>
+    <input type="submit" value="0x5">: 00000000<br/>
+    <input type="submit" value="0x6">: 00000000<br/>
+    <input type="submit" value="0x7">: 00000000<br/>
+    <input type="submit" value="0x8">: 00000000<br/>
+    <input type="submit" value="0x9">: 00000000<br/>
+    <input type="submit" value="0xA">: 00000000<br/>
+    <input type="submit" value="0xB">: 00000000<br/>
+    <input type="submit" value="0xC">: 00000000<br/>
+    <input type="submit" value="0xD">: 00000000<br/>
+    <input type="submit" value="0xE">: 00000000<br/>
+    <input type="submit" value="0xF">: 00000000<br/>
+  </div>
+
+  <div id="history">
+    <b>History</b> (Last 5)<br/>
+    0 - ADD<br/>
+    1 - CMP<br/>
+    2 - MOV A M0x3<br/>
+    3 - PUSH<br/>
+    4 - NOP<br/>
+    5 - NOP<br/>
+  </div>
+    
+  <div id="levels">
+    Goal: bla bla bla bla bla<br/><br/>
+    <a href="">Level 1</a> - 
+    <a href="">Level 2</a> - 
+    <a href="">Level 3</a> - 
+    <a href="">Level 4</a> - 
+    <a href="">Level 5</a> - 
+    <a href="">Level 6</a> - 
+    <a href="">Level 7</a>
   </div>
 </div>
