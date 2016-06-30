@@ -1,0 +1,33 @@
+#everything{
+  width: 800px;
+  background: #00FF00;
+  position: relative;
+  text-align: center;
+}
+
+#registers{
+  width: 400px;
+  background: #FF00FF;
+  float: left;
+
+}
+
+#stack{
+  width: 200px;
+  background: #FF0000;
+  text-align: center;
+  float: right;
+}
+
+#memory{
+  width: 200px;
+  background: #FF0000;
+  float: right;
+  text-align: center;
+}
+
+#instructions{
+  width: 400px;
+  background: #0000FF;
+  text-align: center;
+}

@@ -1,16 +1,74 @@
-<h3>title</h3><br/>
+<LINK REL=StyleSheet HREF="./styles.css" TYPE="text/css" MEDIA=screen>
 
-<input type="submit" value="A">: <input type="text" name="field1"> 
-<input type="submit" value="B">: <input type="text" name="field2"><br>
-<input type="submit" value="C">: <input type="text" name="field1"> 
-<input type="submit" value="D">: <input type="text" name="field2"><br>
-Flags<br/>
-1: [0] 2: [0] 3: [0] 4: [0] 5: [0] 6: [0] 7: [0] 8: [0]
+<div id="everything">
+  <h3>title</h3><br/>
 
-<br/><br/>
+  <div id="registers">
+    
+    <b>Registers</b><br/>
 
-<input type="submit" value="MOV">
-<input type="submit" value="ADD">
-<input type="submit" value="SUB">
-<input type="submit" value="PUT">
-<input type="submit" value="POP">
+    A: 00000000<br/>
+    B: 00000000<br/>
+    C: 00000000<br/>
+    I: 00000000<br/>
+
+    <br/><b>Flags</b><br/>
+    1: [0] 2: [0] 3: [0] 4: [0]<br/>
+    5: [0] 6: [0] 7: [0] 8: [0]<br/>
+
+    <br/><br/>
+
+    <div id="instructions">
+      <input type="submit" value="MOV">
+      <input type="submit" value="ADD">
+      <input type="submit" value="SUB">
+      <input type="submit" value="PUT">
+      <input type="submit" value="POP"><br/>
+      <input type="submit" value="CMP">
+      <input type="submit" value="JMP">
+      <input type="submit" value="***">
+      <input type="submit" value="***">
+      <input type="submit" value="NOP"><br/>
+    </div>
+  </div>
+  
+  <div id="stack">
+    <h4>Stack</h4>
+    0x0: 00000000<br/>
+    0x1: 00000000<br/>
+    0x2: 00000000<br/>
+    0x3: 00000000<br/>
+    0x4: 00000000<br/>
+    0x5: 00000000<br/>
+    0x6: 00000000<br/>
+    0x7: 00000000<br/>
+    0x8: 00000000<br/>
+    0x9: 00000000<br/>
+    0xA: 00000000<br/>
+    0xB: 00000000<br/>
+    0xC: 00000000<br/>
+    0xD: 00000000<br/>
+    0xE: 00000000<br/>
+    0xF: 00000000<br/>
+  </div>
+
+  <div id="memory">
+    <h4>Memory Banks</h4>
+    0x0: 00000000<br/>
+    0x1: 00000000<br/>
+    0x2: 00000000<br/>
+    0x3: 00000000<br/>
+    0x4: 00000000<br/>
+    0x5: 00000000<br/>
+    0x6: 00000000<br/>
+    0x7: 00000000<br/>
+    0x8: 00000000<br/>
+    0x9: 00000000<br/>
+    0xA: 00000000<br/>
+    0xB: 00000000<br/>
+    0xC: 00000000<br/>
+    0xD: 00000000<br/>
+    0xE: 00000000<br/>
+    0xF: 00000000<br/>
+  </div>
+</div>
