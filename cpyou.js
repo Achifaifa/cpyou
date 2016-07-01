@@ -11,9 +11,7 @@
 // SHR X   -> Shifts bits to the right in X (A or B)
 // NOP     -> Does nothing
 
-
 $( document ).ready(function() {
-console.log( "ready!" );
 
 // Initial state
 state={ "registers":{ "A":"00000000", 
@@ -25,30 +23,30 @@ state={ "registers":{ "A":"00000000",
         "history": [],
         "stack": [],
         "memory": {},
-        "instruction": "",
+        "instruction": [],
         "left": 0,
-        "level": 0,
-        "goal": ""
+        "level": "--",
+        "goal": "--"
 }
 
 // Register functions
-$("button, input[value='A']").click(function(){console.log("clicked A register"); update()});
-$("button, input[value='B']").click(function(){console.log("clicked B register")});
-$("button, input[value='C']").click(function(){console.log("clicked C register")});
-$("button, input[value='R']").click(function(){console.log("clicked R register")});
+$("button, input[value='A']").click(function(){ addinst("A") });
+$("button, input[value='B']").click(function(){ addinst("B") });
+$("button, input[value='C']").click(function(){ addinst("C") });
+$("button, input[value='R']").click(function(){ addinst("R") });
 // Instruction functions
 $("button, input[value='RUN']").click(function(){console.log("clicked RUN ")});
-$("button, input[value='CLR']").click(function(){console.log("clicked CLEAR")});
-$("button, input[value='MOV']").click(function(){console.log("clicked MOV instruction")});
-$("button, input[value='ADD']").click(function(){console.log("clicked ADD instruction")});
-$("button, input[value='SUB']").click(function(){console.log("clicked SUB instruction")});
-$("button, input[value='PUT']").click(function(){console.log("clicked PUT instruction")});
-$("button, input[value='POP']").click(function(){console.log("clicked POP instruction")});
-$("button, input[value='CMP']").click(function(){console.log("clicked CMP instruction")});
-$("button, input[value='RPT']").click(function(){console.log("clicked RPT instruction")});
-$("button, input[value='SHL']").click(function(){console.log("clicked SHL instruction")});
-$("button, input[value='SHR']").click(function(){console.log("clicked SHR instruction")});
-$("button, input[value='NOP']").click(function(){console.log("clicked NOP instruction")});
+$("button, input[value='CLR']").click(function(){ state["instruction"]=[] });
+$("button, input[value='MOV']").click(function(){ addinst("MOV") });
+$("button, input[value='ADD']").click(function(){ addinst("ADD") });
+$("button, input[value='SUB']").click(function(){ addinst("SUB") });
+$("button, input[value='PUT']").click(function(){ addinst("PUT") });
+$("button, input[value='POP']").click(function(){ addinst("POP") });
+$("button, input[value='CMP']").click(function(){ addinst("CMP") });
+$("button, input[value='RPT']").click(function(){ addinst("RPT") });
+$("button, input[value='SHL']").click(function(){ addinst("SHL") });
+$("button, input[value='SHR']").click(function(){ addinst("SHR") });
+$("button, input[value='NOP']").click(function(){ addinst("NOP") });
 // History button functions
 $("button, input[value='0']").click(function(){console.log("clicked history (0)")});
 $("button, input[value='1']").click(function(){console.log("clicked history (1)")});
@@ -57,22 +55,28 @@ $("button, input[value='3']").click(function(){console.log("clicked history (3)"
 $("button, input[value='4']").click(function(){console.log("clicked history (4)")});
 $("button, input[value='5']").click(function(){console.log("clicked history (5)")});
 // Memory button functions
-$("button, input[value='0x0']").click(function(){console.log("clicked memory (0x0)")});
-$("button, input[value='0x1']").click(function(){console.log("clicked memory (0x1)")});
-$("button, input[value='0x2']").click(function(){console.log("clicked memory (0x2)")});
-$("button, input[value='0x3']").click(function(){console.log("clicked memory (0x3)")});
-$("button, input[value='0x4']").click(function(){console.log("clicked memory (0x4)")});
-$("button, input[value='0x5']").click(function(){console.log("clicked memory (0x5)")});
-$("button, input[value='0x6']").click(function(){console.log("clicked memory (0x6)")});
-$("button, input[value='0x7']").click(function(){console.log("clicked memory (0x7)")});
-$("button, input[value='0x8']").click(function(){console.log("clicked memory (0x8)")});
-$("button, input[value='0x9']").click(function(){console.log("clicked memory (0x9)")});
-$("button, input[value='0xA']").click(function(){console.log("clicked memory (0xA)")});
-$("button, input[value='0xB']").click(function(){console.log("clicked memory (0xB)")});
-$("button, input[value='0xC']").click(function(){console.log("clicked memory (0xC)")});
-$("button, input[value='0xD']").click(function(){console.log("clicked memory (0xD)")});
-$("button, input[value='0xE']").click(function(){console.log("clicked memory (0xE)")});
-$("button, input[value='0xF']").click(function(){console.log("clicked memory (0xF)")});
+$("button, input[value='0x0']").click(function(){ addinst("M0x0") });
+$("button, input[value='0x1']").click(function(){ addinst("M0x1") });
+$("button, input[value='0x2']").click(function(){ addinst("M0x2") });
+$("button, input[value='0x3']").click(function(){ addinst("M0x3") });
+$("button, input[value='0x4']").click(function(){ addinst("M0x4") });
+$("button, input[value='0x5']").click(function(){ addinst("M0x5") });
+$("button, input[value='0x6']").click(function(){ addinst("M0x6") });
+$("button, input[value='0x7']").click(function(){ addinst("M0x7") });
+$("button, input[value='0x8']").click(function(){ addinst("M0x8") });
+$("button, input[value='0x9']").click(function(){ addinst("M0x9") });
+$("button, input[value='0xA']").click(function(){ addinst("M0xA") });
+$("button, input[value='0xB']").click(function(){ addinst("M0xB") });
+$("button, input[value='0xC']").click(function(){ addinst("M0xC") });
+$("button, input[value='0xD']").click(function(){ addinst("M0xD") });
+$("button, input[value='0xE']").click(function(){ addinst("M0xE") });
+$("button, input[value='0xF']").click(function(){ addinst("M0xF") });
+
+// Adds stuff to the current instruction (
+function addinst(inst){
+  if (state["instruction"].length>2){return}
+  state["instruction"].push(inst)
+}
 
 // Update the screen with the new state
 function update(){
@@ -101,7 +105,10 @@ function update(){
   $("#levelno").text(state["level"])
   $("#goal").text(state["goal"])
   $("#instructions #instleft").text(state["left"])
-  $("#instructions #instruction").text(state["instruction"])
+  $("#instructions #instruction").text(state["instruction"].join(" "))
+  $("#stack #stacklen").text(state["stack"].length)
 }
+
+update();
 
 });//end of ready

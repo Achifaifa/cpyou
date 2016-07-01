@@ -70,6 +70,10 @@
   display: inline-block;
 }
 
+#stacklen{
+  display: inline-block;
+}
+
 #memdata{
   display: inline-block;
 }
