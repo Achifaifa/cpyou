@@ -65,3 +65,32 @@
   padding-top: 10px;
 
 }
+
+#stackdata{
+  display: inline-block;
+}
+
+#memdata{
+  display: inline-block;
+}
+
+#regdata{
+  display: inline-block;
+}
+
+#histdata{
+  display: inline-block;
+}
+
+#flagdata{
+  display: inline-block;
+}
+
+#instruction{
+  display: inline-block;
+  width: 150px;
+}
+
+#instleft{
+  display: inline-block;
+}

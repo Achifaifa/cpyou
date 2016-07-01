@@ -14,23 +14,23 @@
     
     <b>Registers</b><br/>
 
-    <input type="submit" value="A">: 00000000<br/>
-    <input type="submit" value="B">: 00000000<br/>
-    <input type="submit" value="C">: 00000000<br/>
-    <input type="submit" value="R">: 00000000<br/>
+    <input type="submit" value="A">: <div id="regdata">00000000</div><br/>
+    <input type="submit" value="B">: <div id="regdata">00000000</div><br/>
+    <input type="submit" value="C">: <div id="regdata">00000000</div><br/>
+    <input type="submit" value="R">: <div id="regdata">00000000</div><br/>
 
     <br/><b>Flags</b><br/>
-    1: [0] 2: [0] 3: [0] 4: [0]<br/>
-    5: [0] 6: [0] 7: [0] 8: [0]<br/>
+    1: [<div id="flagdata">0</div>] 2: [<div id="flagdata">0</div>] 3: [<div id="flagdata">0</div>] 4: [<div id="flagdata">0</div>]<br/>
+    5: [<div id="flagdata">0</div>] 6: [<div id="flagdata">0</div>] 7: [<div id="flagdata">0</div>] 8: [<div id="flagdata">0</div>]<br/>
 
     <br/><br/>
 
     <div id="instructions">
 
-      <b>Instructions</b> (5 left)<br/>
+      <b>Instructions</b> (<div id="instleft">5</div> left)<br/>
       
       <input type="submit" value="RUN"> 
-      [MOV] [A] [M0x8]
+      <div id="instruction">[MOV] [A] [M0x8]</div>
       <input type="submit" value="CLR">
       <br/><br/>
       <input type="submit" value="MOV">
@@ -49,52 +49,53 @@
   
   <div id="stack">
     <b>Stack</b><br/>
-    0x0: 00000000<br/>
-    0x1: 00000000<br/>
-    0x2: 00000000<br/>
-    0x3: 00000000<br/>
-    0x4: 00000000<br/>
-    0x5: 00000000<br/>
-    0x6: 00000000<br/>
-    0x7: 00000000<br/>
-    0x8: 00000000<br/>
-    0x9: 00000000<br/>
-    0xA: 00000000<br/>
-    0xB: 00000000<br/>
-    0xC: 00000000<br/>
-    0xD: 00000000<br/>
-    0xE: 00000000<br/>
-    0xF: 00000000<br/>
+    0x0: <div id="stackdata">00000000</div><br/>
+    0x1: <div id="stackdata">00000000</div><br/>
+    0x2: <div id="stackdata">00000000</div><br/>
+    0x3: <div id="stackdata">00000000</div><br/>
+    0x4: <div id="stackdata">00000000</div><br/>
+    0x5: <div id="stackdata">00000000</div><br/>
+    0x6: <div id="stackdata">00000000</div><br/>
+    0x7: <div id="stackdata">00000000</div><br/>
+    0x8: <div id="stackdata">00000000</div><br/>
+    0x9: <div id="stackdata">00000000</div><br/>
+    0xA: <div id="stackdata">00000000</div><br/>
+    0xB: <div id="stackdata">00000000</div><br/>
+    0xC: <div id="stackdata">00000000</div><br/>
+    0xD: <div id="stackdata">00000000</div><br/>
+    0xE: <div id="stackdata">00000000</div><br/>
+    0xF: <div id="stackdata">00000000</div><br/>
+    0/16
   </div>
 
   <div id="memory">
     <b>Memory</b><br/>
-    <input type="submit" value="0x0">: 00000000<br/>
-    <input type="submit" value="0x1">: 00000000<br/>
-    <input type="submit" value="0x2">: 00000000<br/>
-    <input type="submit" value="0x3">: 00000000<br/>
-    <input type="submit" value="0x4">: 00000000<br/>
-    <input type="submit" value="0x5">: 00000000<br/>
-    <input type="submit" value="0x6">: 00000000<br/>
-    <input type="submit" value="0x7">: 00000000<br/>
-    <input type="submit" value="0x8">: 00000000<br/>
-    <input type="submit" value="0x9">: 00000000<br/>
-    <input type="submit" value="0xA">: 00000000<br/>
-    <input type="submit" value="0xB">: 00000000<br/>
-    <input type="submit" value="0xC">: 00000000<br/>
-    <input type="submit" value="0xD">: 00000000<br/>
-    <input type="submit" value="0xE">: 00000000<br/>
-    <input type="submit" value="0xF">: 00000000<br/>
+    <input type="submit" value="0x0">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0x1">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0x2">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0x3">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0x4">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0x5">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0x6">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0x7">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0x8">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0x9">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0xA">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0xB">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0xC">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0xD">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0xE">: <div id="memdata">00000000</div><br/>
+    <input type="submit" value="0xF">: <div id="memdata">00000000</div><br/>
   </div>
 
   <div id="history">
     <b>History</b> (Last 5)<br/><br>
-    <input type="submit" value="0"> - ADD<br/>
-    <input type="submit" value="1"> - CMP<br/>
-    <input type="submit" value="2"> - MOV A M0x3<br/>
-    <input type="submit" value="3"> - PUSH<br/>
-    <input type="submit" value="4"> - NOP<br/>
-    <input type="submit" value="5"> - NOP<br/>
+    <input type="submit" value="0"> - <div id="histdata">ADD</div><br/>
+    <input type="submit" value="1"> - <div id="histdata">CMP</div><br/>
+    <input type="submit" value="2"> - <div id="histdata">MOV A M0x3</div><br/>
+    <input type="submit" value="3"> - <div id="histdata">PUSH</div><br/>
+    <input type="submit" value="4"> - <div id="histdata">NOP</div><br/>
+    <input type="submit" value="5"> - <div id="histdata">NOP</div><br/>
   </div>
     
   <div id="levels">
