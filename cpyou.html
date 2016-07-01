@@ -7,8 +7,8 @@
 <title>CPYou</title>
 
 <div id="everything">
-  <b>Level <div id="levelno">0</div></b><br/>
-  Goal: <div id="goal">bla bla bla bla bla text more text long text bla bla</div> <br/>
+  <b>Level <div id="levelno"></div></b><br/>
+  Goal: <div id="goal"></div> <br/>
 
   <div id="registers">
     
@@ -20,8 +20,14 @@
     <input type="submit" value="R">: <div id="regdata">00000000</div><br/>
 
     <br/><b>Flags</b><br/>
-    1: [<div id="flagdata">0</div>] 2: [<div id="flagdata">0</div>] 3: [<div id="flagdata">0</div>] 4: [<div id="flagdata">0</div>]<br/>
-    5: [<div id="flagdata">0</div>] 6: [<div id="flagdata">0</div>] 7: [<div id="flagdata">0</div>] 8: [<div id="flagdata">0</div>]<br/>
+    NEG: [<div id="flagdata">0</div>] 
+    CMP: [<div id="flagdata">0</div>] 
+    NEQ: [<div id="flagdata">0</div>] 
+    ___: [<div id="flagdata">0</div>]<br/>
+    ___: [<div id="flagdata">0</div>] 
+    ___: [<div id="flagdata">0</div>] 
+    ___: [<div id="flagdata">0</div>] 
+    STW: [<div id="flagdata">0</div>]<br/>
 
     <br/><br/>
 
@@ -30,7 +36,7 @@
       <b>Instructions</b> (<div id="instleft">5</div> left)<br/>
       
       <input type="submit" value="RUN"> 
-      <div id="instruction">[MOV] [A] [M0x8]</div>
+      <div id="instruction"></div>
       <input type="submit" value="CLR">
       <br/><br/>
       <input type="submit" value="MOV">
@@ -39,7 +45,6 @@
       <input type="submit" value="PUT">
       <input type="submit" value="POP"><br/>
       <input type="submit" value="CMP">
-      <input type="submit" value="RPT">
       <input type="submit" value="SHL">
       <input type="submit" value="SHR">
       <input type="submit" value="NOP"><br/>
@@ -90,31 +95,31 @@
 
   <div id="history">
     <b>History</b> (Last 5)<br/><br>
-    <input type="submit" value="0"> - <div id="histdata">ADD</div><br/>
-    <input type="submit" value="1"> - <div id="histdata">CMP</div><br/>
-    <input type="submit" value="2"> - <div id="histdata">MOV A M0x3</div><br/>
-    <input type="submit" value="3"> - <div id="histdata">PUSH</div><br/>
-    <input type="submit" value="4"> - <div id="histdata">NOP</div><br/>
-    <input type="submit" value="5"> - <div id="histdata">NOP</div><br/>
+    <input type="submit" value="0"> - <div id="histdata"></div><br/>
+    <input type="submit" value="1"> - <div id="histdata"></div><br/>
+    <input type="submit" value="2"> - <div id="histdata"></div><br/>
+    <input type="submit" value="3"> - <div id="histdata"></div><br/>
+    <input type="submit" value="4"> - <div id="histdata"></div><br/>
+    <input type="submit" value="5"> - <div id="histdata"></div><br/>
   </div>
     
   <div id="levels">
-    <a href="">Level 01</a> - 
-    <a href="">Level 02</a> - 
-    <a href="">Level 03</a> - 
-    <a href="">Level 04</a> - 
-    <a href="">Level 05</a> - 
-    <a href="">Level 06</a> - 
-    <a href="">Level 07</a> -
-    <a href="">Level 08</a> <br/> 
-    <a href="">Level 09</a> -
-    <a href="">Level 10</a> - 
-    <a href="">Level 11</a> - 
-    <a href="">Level 12</a> - 
-    <a href="">Level 13</a> - 
-    <a href="">Level 14</a> -
-    <a href="">Level 15</a> - 
-    <a href="">Level 16</a> 
+    <a href="01">Level 01</a> - 
+    <a href="02">Level 02</a> - 
+    <a href="03">Level 03</a> - 
+    <a href="04">Level 04</a> - 
+    <a href="05">Level 05</a> - 
+    <a href="06">Level 06</a> - 
+    <a href="07">Level 07</a> -
+    <a href="08">Level 08</a> <br/> 
+    <a href="09">Level 09</a> -
+    <a href="10">Level 10</a> - 
+    <a href="11">Level 11</a> - 
+    <a href="12">Level 12</a> - 
+    <a href="13">Level 13</a> - 
+    <a href="14">Level 14</a> -
+    <a href="15">Level 15</a> - 
+    <a href="16">Level 16</a> 
 
   </div>
 </div>

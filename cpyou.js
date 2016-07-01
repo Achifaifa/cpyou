@@ -1,30 +1,91 @@
-// Instruction set:
-//
-// MOV X Y -> Moves the contents of X to Y
-// ADD     -> Adds A and B and puts the result in R
-// SUB     -> Subtracts A and B and puts the result in R
-// PUT X   -> Puts a value from X (A, B or R) in the stack
-// POP X   -> Gets a value from the stack (Puts it in A or B)
-// CMP     -> Compares A and B
-// RPT N M -> Repeats instructions N to M in the history and decreases counter until counter is 0
-// SHL X   -> Shifts bits to the left in X (A or B)
-// SHR X   -> Shifts bits to the right in X (A or B)
-// NOP     -> Does nothing
-
 $( document ).ready(function() {
 
+memaddr=["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
+
+levels=[
+{ "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "stack": [],
+  "memory": {"M0x0": 0x1009F6AB, "M0x1": 0x55610FFF},
+  "instruction": [],
+  "left": 5,
+  "level": "01",
+  "goal": "Add the two numbers in memory"
+},
+{ "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "left": 50,
+  "level": "--",
+  "goal": "--"
+},
+{ "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "left": 50,
+  "level": "--",
+  "goal": "--"
+},
+{ "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "left": 50,
+  "level": "--",
+  "goal": "--"
+},
+{ "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "left": 50,
+  "level": "--",
+  "goal": "--"
+}]
+
 // Initial state
-state={ "registers":{ "A":"00000000", 
-                      "B":"00000000", 
-                      "C":"00000000", 
-                      "R":"00000000"
+state={ "registers":{ "A":0x00000000, 
+                      "B":0x00000000, 
+                      "C":0x00000000, 
+                      "R":0x00000000
                     },
-        "flags": "00000000",
+        "flags": [0, 0, 0, 0, 0, 0, 0, 0],
         "history": [],
         "stack": [],
         "memory": {},
         "instruction": [],
-        "left": 0,
+        "left": 50,
         "level": "--",
         "goal": "--"
 }
@@ -71,8 +132,20 @@ $("button, input[value='0xC']").click(function(){ addinst("M0xC") });
 $("button, input[value='0xD']").click(function(){ addinst("M0xD") });
 $("button, input[value='0xE']").click(function(){ addinst("M0xE") });
 $("button, input[value='0xF']").click(function(){ addinst("M0xF") });
-
+// Add another one for updating the screen when a button is pressed
 $("button, input").on("click", update);
+
+// Intercept links
+$('#everything').delegate('a', 'click', function(event) {
+  event.preventDefault();
+  lvl=event.currentTarget.href.slice(-2)
+  loadlevel(parseInt(lvl))
+});
+
+function loadlevel(n){
+  state=jQuery.extend(true, {}, levels[n-1])
+  update()
+}
 
 // Adds stuff to the current instruction (
 function addinst(inst){
@@ -87,15 +160,8 @@ function clrinst(){
 }
 
 function rptinst(n){
-  ni=state["history"][n-1]
-  if (ni!=undefined) {state["instruction"]=ni}
-}
-
-// Runs the current instruction
-function runinst(){
-
-  addhist()
-  clrinst()
+  ni=state["history"][state["history"].length-n-1]
+  if (ni!=undefined) {state["instruction"]=ni.slice(-3)}
 }
 
 // Adds instruction to history
@@ -104,37 +170,156 @@ function addhist(){
   state["history"].push(state["instruction"])
   if (state["history"].length>6) {state["history"].splice(undefined,1)}
 }
+
+// Checks the status for problems
+function checkst(){
+
+  if (state["stack"].length>16) {alert("Stack Overflow!\nGame over")}
+  else if (state["stack"].length>14) {state["flags"][7]=1}
+  else if (state["stack"].length<=14) {state["flags"][7]=0}
+
+  if (state["left"]<=0) {alert("No more moves!\nGame over")}
   
+
+}
+
+// Runs the current instruction
+// Instruction set:
+//
+// [X] MOV X Y -> Moves the contents of X to Y
+// [X] ADD     -> Adds A and B and puts the result in R
+// [X] SUB     -> Subtracts A and B and puts the result in R
+// [X] PUT X   -> Puts a value from X (A, B or R) in the stack
+// [X] POP X   -> Gets a value from the stack (Puts it in A or B)
+// [X] CMP     -> Compares A and B
+// [X] SHL X   -> Shifts bits to the left in X (A or B)
+// [X] SHR X   -> Shifts bits to the right in X (A or B)
+// [X] NOP     -> Does nothing
+//
+// Flags:
+//
+// 0      1         2           3   4   5   6   7
+// Sign | Compare | Not Equal | X | X | X | X | Stack Full warning
+//
+function runinst(){
+
+  st=state["instruction"]
+
+  if (st.length==0) {return}
+
+  if (st[0]=="MOV") {
+    if (["A", "B", "R", "C"].indexOf(st[1])==-1 && st[1].indexOf("M0x")==-1) {return}
+    if (["A", "B", "R"].indexOf(st[2])==-1 && st[2].indexOf("M0x")==-1) {return}
+    from="memory"
+    if (["A", "B", "R", "C"].indexOf(st[1])!=-1) {
+      from="registers"
+    }
+    to="memory"
+    if (["A", "B", "R"].indexOf(st[2])!=-1) {
+      to="registers"
+    }
+
+    state[to][st[2]]=state[from][st[1]]
+  }
+
+  else if (st[0]=="SHR") {
+    if (st.length!=2){return}
+    if (["A", "B"].indexOf(st[1])==-1) {return}
+
+    state["registers"][st[1]]=state["registers"][st[1]]>>1
+  }
+
+  else if (st[0]=="SHL") {
+    if (st.length!=2){return}
+    if (["A", "B"].indexOf(st[1])==-1) {return}
+
+    state["registers"][st[1]]=state["registers"][st[1]]<<1
+  }
+
+  else if (st[0]=="ADD") { 
+    if (st.length!=1) {return}
+    state["registers"]["R"] = state["registers"]["A"]+state["registers"]["B"]
+  }
+
+  else if (st[0]=="SUB") { 
+    if (st.length!=1) {return}
+    res = state["registers"]["A"]-state["registers"]["B"]
+    if (res<0){
+      res=abs(res)
+      state["flags"][0]=1
+    }
+    state["registers"]["R"]=res
+  }
+
+  else if (st[0]=="PUT") {
+    if (st.length!=2) {return}
+    if (["A", "B", "R"].indexOf(st[1])==-1) {return}
+    state["stack"]=[state["registers"][st[1]]].concat(state["stack"])
+  }
+
+  else if (st[0]=="POP") {
+    if (st.length!=2) {return}
+    if (["A", "B", "R"].indexOf(st[1])==-1) {return}
+    state["registers"][st[1]]=state["stack"].pop()
+  }
+
+  else if (st[0]=="CMP"){
+    if (st.length!=1) {return}
+    if (state["registers"]["A"]>state["registers"]["B"]) {state["flags"][1]=1}
+    else {state["flags"][1]=0}
+    if (state["registers"]["A"]!=state["registers"]["B"]) {state["flags"][2]=1}
+  }
+
+  else if (st[0]=="NOP"){
+    if (st.length!=1) {return}
+  }
+
+  state["left"]-=1
+  addhist()
+  clrinst()
+  checkst()
+}
 
 // Update the screen with the new state
 function update(){
 
-  $("#registers #regdata").eq(0).text(state["registers"]["A"])
-  $("#registers #regdata").eq(1).text(state["registers"]["B"])
-  $("#registers #regdata").eq(2).text(state["registers"]["C"])
-  $("#registers #regdata").eq(3).text(state["registers"]["R"])
+  $("#registers #regdata").eq(0).text( ("0000000"+state["registers"]["A"].toString(16)).slice(-8) )
+  $("#registers #regdata").eq(1).text( ("0000000"+state["registers"]["B"].toString(16)).slice(-8) )
+  $("#registers #regdata").eq(2).text( ("0000000"+state["registers"]["C"].toString(16)).slice(-8) )
+  $("#registers #regdata").eq(3).text( ("0000000"+state["registers"]["R"].toString(16)).slice(-8) )
 
  
   for (i=0; i<16; i++){
     // Update all the stack information
     nextst=state["stack"][i]
     if (nextst==undefined){nextst="00000000"}
-    $("#stack #stackdata").eq(i).text(nextst)
+    $("#stack #stackdata").eq(i).text(("0000000"+nextst.toString(16)).slice(-8))
     // Reset all memory
     $("#memory #memdata").eq(i).text("00000000")
     // Update history
     nexthi=state["history"][state["history"].length-i-1]
-    if (nexthi==undefined){nexthi=""}
-    $("#history #histdata").eq(i).text(nexthi)
+    if (nexthi==undefined){nexthi=[]}
+    $("#history #histdata").eq(i).text(nexthi.join(" "))
     // Update flag data
     $("#registers #flagdata").eq(i).text(state["flags"][i])
   }
-  
+
+  // Update memory from dict
+  memaddr.forEach(function(currentValue){
+    i=currentValue
+    val=state["memory"]["M0x"+i]
+    if (val!=undefined){
+      $("#memory #memdata").eq(parseInt(i, 16)).text( ("0000000"+val.toString(16)).slice(-8) )
+    }
+  })
+    
   $("#levelno").text(state["level"])
   $("#goal").text(state["goal"])
   $("#instructions #instleft").text(state["left"])
   $("#instructions #instruction").text(state["instruction"].join(" "))
   $("#stack #stacklen").text(state["stack"].length)
+
+  checkst()
 }
 
 update();
