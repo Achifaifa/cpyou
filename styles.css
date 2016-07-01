@@ -86,6 +86,14 @@
   display: inline-block;
 }
 
+#goal{
+  display: inline-block;
+}
+
+#levelno{
+  display: inline-block;
+}
+
 #instruction{
   display: inline-block;
   width: 150px;

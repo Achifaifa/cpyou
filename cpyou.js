@@ -21,7 +21,7 @@ state={ "registers":{ "A":"00000000",
                       "C":"00000000", 
                       "R":"00000000"
                     },
-        "flags": "BLABLALA",
+        "flags": "00000000",
         "history": [],
         "stack": [],
         "memory": {},
@@ -82,11 +82,7 @@ function update(){
   $("#registers #regdata").eq(2).text(state["registers"]["C"])
   $("#registers #regdata").eq(3).text(state["registers"]["R"])
 
-  for (i=0; i<6; i++){
-    nexthi=state["history"][i]
-    if (nexthi==undefined){nexthi=""}
-    $("#history #histdata").eq(i).text(nexthi)
-  }
+ 
   for (i=0; i<16; i++){
     // Update all the stack information
     nextst=state["stack"][i]
@@ -94,11 +90,16 @@ function update(){
     $("#stack #stackdata").eq(i).text(nextst)
     // Reset all memory
     $("#memory #memdata").eq(i).text("00000000")
+    // Update history
+    nexthi=state["history"][i]
+    if (nexthi==undefined){nexthi=""}
+    $("#history #histdata").eq(i).text(nexthi)
+    // Update flag data
+    $("#registers #flagdata").eq(i).text(state["flags"][i])
   }
-  for (i=0; i<8; i++){
-    $("#instructions #flagdata").eq(i).text(state["flags"][i])
-  }
-
+  
+  $("#levelno").text(state["level"])
+  $("#goal").text(state["goal"])
   $("#instructions #instleft").text(state["left"])
   $("#instructions #instruction").text(state["instruction"])
 }
