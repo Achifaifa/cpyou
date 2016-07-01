@@ -3,7 +3,9 @@ $( document ).ready(function() {
 memaddr=["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
 
 levels=[
-{ "registers":{ "A":0x00000000, 
+{ "level": "01",
+  "goal": "Add the numbers in memory",
+  "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
                 "C":0x00000000, 
                 "R":0x00000000
@@ -11,71 +13,15 @@ levels=[
   "flags": [0, 0, 0, 0, 0, 0, 0, 0],
   "history": [],
   "stack": [],
-  "memory": {"M0x0": 0x1009F6AB, "M0x1": 0x55610FFF},
+  "memory": {"M0x0": 0x1009F6AB, "M0x1": 0x55610FFF, "M0x2": 0x0055ABBF},
   "instruction": [],
-  "left": 5,
-  "level": "01",
-  "goal": "Add the two numbers in memory"
-},
-{ "registers":{ "A":0x00000000, 
-                "B":0x00000000, 
-                "C":0x00000000, 
-                "R":0x00000000
-              },
-  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
-  "history": [],
-  "stack": [],
-  "memory": {},
-  "instruction": [],
-  "left": 50,
-  "level": "--",
-  "goal": "--"
-},
-{ "registers":{ "A":0x00000000, 
-                "B":0x00000000, 
-                "C":0x00000000, 
-                "R":0x00000000
-              },
-  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
-  "history": [],
-  "stack": [],
-  "memory": {},
-  "instruction": [],
-  "left": 50,
-  "level": "--",
-  "goal": "--"
-},
-{ "registers":{ "A":0x00000000, 
-                "B":0x00000000, 
-                "C":0x00000000, 
-                "R":0x00000000
-              },
-  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
-  "history": [],
-  "stack": [],
-  "memory": {},
-  "instruction": [],
-  "left": 50,
-  "level": "--",
-  "goal": "--"
-},
-{ "registers":{ "A":0x00000000, 
-                "B":0x00000000, 
-                "C":0x00000000, 
-                "R":0x00000000
-              },
-  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
-  "history": [],
-  "stack": [],
-  "memory": {},
-  "instruction": [],
-  "left": 50,
-  "level": "--",
-  "goal": "--"
+  "left": 10, //Best: 6
+  "condition": "state['memory']['M0xF']==0x65c0b269"
+  
 }]
 
 // Initial state
-state={ "registers":{ "A":0x00000000, 
+initialstate={ "registers":{ "A":0x00000000, 
                       "B":0x00000000, 
                       "C":0x00000000, 
                       "R":0x00000000
@@ -87,8 +33,10 @@ state={ "registers":{ "A":0x00000000,
         "instruction": [],
         "left": 50,
         "level": "--",
-        "goal": "--"
+        "goal": "--",
+        "condition": "1==0"
 }
+state=jQuery.extend(true, {}, initialstate)
 
 // Register functions
 $("button, input[value='A']").click(function(){ addinst("A") });
@@ -179,6 +127,11 @@ function checkst(){
   else if (state["stack"].length<=14) {state["flags"][7]=0}
 
   if (state["left"]<=0) {alert("No more moves!\nGame over")}
+
+  if (eval(state["condition"])) {
+    alert("That's right!")
+    state=initialstate
+  }
   
 
 }
