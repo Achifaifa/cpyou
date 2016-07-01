@@ -72,11 +72,18 @@ $("button, input[value='0xD']").click(function(){ addinst("M0xD") });
 $("button, input[value='0xE']").click(function(){ addinst("M0xE") });
 $("button, input[value='0xF']").click(function(){ addinst("M0xF") });
 
+$("button, input").on("click", update);
+
 // Adds stuff to the current instruction (
 function addinst(inst){
-  if (state["instruction"].length>2){return}
-  state["instruction"].push(inst)
+  if (state["instruction"].length<3) {state["instruction"].push(inst)}
 }
+
+// Clears the current instruction
+function clrinst(){
+  state["instruction"]=[]
+}
+  
 
 // Update the screen with the new state
 function update(){
