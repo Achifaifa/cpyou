@@ -35,8 +35,8 @@ $("button, input[value='B']").click(function(){ addinst("B") });
 $("button, input[value='C']").click(function(){ addinst("C") });
 $("button, input[value='R']").click(function(){ addinst("R") });
 // Instruction functions
-$("button, input[value='RUN']").click(function(){console.log("clicked RUN ")});
-$("button, input[value='CLR']").click(function(){ state["instruction"]=[] });
+$("button, input[value='RUN']").click(function(){ runinst() });
+$("button, input[value='CLR']").click(function(){ clrinst() });
 $("button, input[value='MOV']").click(function(){ addinst("MOV") });
 $("button, input[value='ADD']").click(function(){ addinst("ADD") });
 $("button, input[value='SUB']").click(function(){ addinst("SUB") });
@@ -48,12 +48,12 @@ $("button, input[value='SHL']").click(function(){ addinst("SHL") });
 $("button, input[value='SHR']").click(function(){ addinst("SHR") });
 $("button, input[value='NOP']").click(function(){ addinst("NOP") });
 // History button functions
-$("button, input[value='0']").click(function(){console.log("clicked history (0)")});
-$("button, input[value='1']").click(function(){console.log("clicked history (1)")});
-$("button, input[value='2']").click(function(){console.log("clicked history (2)")});
-$("button, input[value='3']").click(function(){console.log("clicked history (3)")});
-$("button, input[value='4']").click(function(){console.log("clicked history (4)")});
-$("button, input[value='5']").click(function(){console.log("clicked history (5)")});
+$("button, input[value='0']").click(function(){ rptinst(0) });
+$("button, input[value='1']").click(function(){ rptinst(1) });
+$("button, input[value='2']").click(function(){ rptinst(2) });
+$("button, input[value='3']").click(function(){ rptinst(3) });
+$("button, input[value='4']").click(function(){ rptinst(4) });
+$("button, input[value='5']").click(function(){ rptinst(5) });
 // Memory button functions
 $("button, input[value='0x0']").click(function(){ addinst("M0x0") });
 $("button, input[value='0x1']").click(function(){ addinst("M0x1") });
@@ -76,12 +76,33 @@ $("button, input").on("click", update);
 
 // Adds stuff to the current instruction (
 function addinst(inst){
+
   if (state["instruction"].length<3) {state["instruction"].push(inst)}
 }
 
 // Clears the current instruction
-function clrinst(){
-  state["instruction"]=[]
+function clrinst(){ 
+
+  state["instruction"]=[] 
+}
+
+function rptinst(n){
+  ni=state["history"][n-1]
+  if (ni!=undefined) {state["instruction"]=ni}
+}
+
+// Runs the current instruction
+function runinst(){
+
+  addhist()
+  clrinst()
+}
+
+// Adds instruction to history
+function addhist(){
+
+  state["history"].push(state["instruction"])
+  if (state["history"].length>6) {state["history"].splice(undefined,1)}
 }
   
 
@@ -102,7 +123,7 @@ function update(){
     // Reset all memory
     $("#memory #memdata").eq(i).text("00000000")
     // Update history
-    nexthi=state["history"][i]
+    nexthi=state["history"][state["history"].length-i-1]
     if (nexthi==undefined){nexthi=""}
     $("#history #histdata").eq(i).text(nexthi)
     // Update flag data
