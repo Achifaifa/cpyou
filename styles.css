@@ -6,6 +6,7 @@
   margin: auto;
   padding-top: 5px;
   margin-top: 0px;
+  border: 1px solid;
 }
 
 #registers{
@@ -51,6 +52,8 @@
   float: left;
   padding-top: 5px;
   padding-bottom: 5px;
+  border: 1px solid;
+  margin-left: -1px;
 }
 
 #history{
