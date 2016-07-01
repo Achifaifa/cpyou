@@ -1,50 +1,64 @@
 #everything{
   width: 800px;
-  background: #00FF00;
+  background: #AAA;
   position: relative;
   text-align: center;
   margin: auto;
+  padding-top: 5px;
+  margin-top: 0px;
 }
 
 #registers{
   width: 400px;
-  background: #FF00FF;
+  background: #AAA;
   float: left;
+  border-top: 1px solid;
+  padding-top: 10px;
 
 }
 
 #stack{
   width: 200px;
-  background: #00FFF0;
+  background: #AAA;
   text-align: center;
   float: right;
+  border-top: 1px solid;
+  padding-top: 10px;
 }
 
 #memory{
   width: 200px;
-  background: #FF0000;
+  background: #AAA;
   float: right;
   text-align: center;
+  border-top: 1px solid;
+  padding-top: 10px;
 }
 
 #instructions{
   width: 400px;
-  background: #FFF000;
+  background: #CCC;
   text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #levels{
   width: 800px;
-  background: #F90977;
+  background: #888;
   margin: auto;
   bottom: 0;
   float: left;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 #history{
   width: 300px;
-  background: #123456;
+  background: #CCC;
   text-align: left;
   padding-left: 100px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 
 }

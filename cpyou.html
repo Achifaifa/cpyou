@@ -1,7 +1,19 @@
-<LINK REL=StyleSheet HREF="./styles.css" TYPE="text/css" MEDIA=screen>
+<link rel=stylesheet href="./styles.css" type="text/css">
+
+<!-- Import jquery here -->
+
+<script>
+function change(){
+  $(".h3").text("test")
+}
+change()
+</script>
+
+<title>CPYou</title>
 
 <div id="everything">
-  <h3>title</h3><br/>
+  <b>Level 0</b><br/>
+  Goal: bla bla bla bla bla text more text long text bla bla <br/>
 
   <div id="registers">
     
@@ -20,8 +32,12 @@
 
     <div id="instructions">
 
-      <input type="submit" value="RUN"> [MOV] [A] [M0x8]<br/><br/>
-
+      <b>Instructions</b><br/>
+      
+      <input type="submit" value="RUN"> 
+      [MOV] [A] [M0x8]
+      <input type="submit" value="CLR">
+      <br/><br/>
       <input type="submit" value="MOV">
       <input type="submit" value="ADD">
       <input type="submit" value="SUB">
@@ -37,7 +53,7 @@
   </div>
   
   <div id="stack">
-    <h4>Stack</h4>
+    <b>Stack</b><br/>
     0x0: 00000000<br/>
     0x1: 00000000<br/>
     0x2: 00000000<br/>
@@ -57,7 +73,7 @@
   </div>
 
   <div id="memory">
-    <h4>Memory Banks</h4>
+    <b>Memory Banks</b><br/>
     <input type="submit" value="0x0">: 00000000<br/>
     <input type="submit" value="0x1">: 00000000<br/>
     <input type="submit" value="0x2">: 00000000<br/>
@@ -77,17 +93,16 @@
   </div>
 
   <div id="history">
-    <b>History</b> (Last 5)<br/>
-    0 - ADD<br/>
-    1 - CMP<br/>
-    2 - MOV A M0x3<br/>
-    3 - PUSH<br/>
-    4 - NOP<br/>
-    5 - NOP<br/>
+    <b>History</b> (Last 5)<br/><br>
+    <input type="submit" value="0"> - ADD<br/>
+    <input type="submit" value="1"> - CMP<br/>
+    <input type="submit" value="2"> - MOV A M0x3<br/>
+    <input type="submit" value="3"> - PUSH<br/>
+    <input type="submit" value="4"> - NOP<br/>
+    <input type="submit" value="5"> - NOP<br/>
   </div>
     
   <div id="levels">
-    Goal: bla bla bla bla bla<br/><br/>
     <a href="">Level 1</a> - 
     <a href="">Level 2</a> - 
     <a href="">Level 3</a> - 
