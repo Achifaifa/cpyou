@@ -4,7 +4,7 @@ memaddr=["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "
 
 levels=[
 { "level": "01",
-  "goal": "Add the numbers in memory",
+  "goal": "Add the numbers in memory, put the result in M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
                 "C":0x00000000, 
@@ -91,8 +91,11 @@ $('#everything').delegate('a', 'click', function(event) {
 });
 
 function loadlevel(n){
-  state=jQuery.extend(true, {}, levels[n-1])
-  update()
+  nlvl=levels[n-1]
+  if (nlvl!=undefined) {
+    state=jQuery.extend(true, {}, )
+    update()
+  }
 }
 
 // Adds stuff to the current instruction (
