@@ -18,6 +18,22 @@ levels=[
   "left": 10, //Best: 6
   "condition": "state['memory']['M0xF']==0x65c0b269"
   
+},
+{ "level": "02",
+  "goal": "Calculate M0x0 % M0x1 and put the result in M0xF",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "stack": [],
+  "memory": {"M0x0": 0x85107010, "M0x1": 0x0109AE00},
+  "instruction": [],
+  "left": 30, 
+  "condition": "state['memory']['M0xF']==0x000d2c10"
+  
 }]
 
 // Initial state
@@ -38,12 +54,12 @@ initialstate={ "registers":{ "A":0x00000000,
 }
 state=jQuery.extend(true, {}, initialstate)
 
-// Register functions
+// Register button functions
 $("button, input[value='A']").click(function(){ addinst("A") });
 $("button, input[value='B']").click(function(){ addinst("B") });
 $("button, input[value='C']").click(function(){ addinst("C") });
 $("button, input[value='R']").click(function(){ addinst("R") });
-// Instruction functions
+// Instruction button functions
 $("button, input[value='RUN']").click(function(){ runinst() });
 $("button, input[value='CLR']").click(function(){ clrinst() });
 $("button, input[value='MOV']").click(function(){ addinst("MOV") });
@@ -90,15 +106,16 @@ $('#everything').delegate('a', 'click', function(event) {
   loadlevel(parseInt(lvl))
 });
 
+// Load a new level
 function loadlevel(n){
   nlvl=levels[n-1]
   if (nlvl!=undefined) {
-    state=jQuery.extend(true, {}, )
+    state=jQuery.extend(true, {}, nlvl)
     update()
   }
 }
 
-// Adds stuff to the current instruction (
+// Adds stuff to the current instruction 
 function addinst(inst){
 
   if (state["instruction"].length<3) {state["instruction"].push(inst)}
@@ -110,6 +127,7 @@ function clrinst(){
   state["instruction"]=[] 
 }
 
+// Puts a function from the history into the instruction slot
 function rptinst(n){
   ni=state["history"][state["history"].length-n-1]
   if (ni!=undefined) {state["instruction"]=ni.slice(-3)}
@@ -133,7 +151,7 @@ function checkst(){
 
   if (eval(state["condition"])) {
     alert("That's right!")
-    state=initialstate
+    state=jQuery.extend(true, {}, initialstate)
   }
   
 
