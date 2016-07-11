@@ -63,7 +63,15 @@
   padding-left: 100px;
   padding-bottom: 10px;
   padding-top: 10px;
+}
 
+#help{
+  width: 800px;
+  height: 650;
+  z-index: 999;
+  background-image: url("./img/help.png");
+  float: left;
+  position: absolute;
 }
 
 #stackdata{

@@ -1,7 +1,7 @@
 $( document ).ready(function() {
 
 memaddr=["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
-
+helpon=0;
 levels=[
 { "level": "01",
   "goal": "Add the numbers in memory, put the result in M0xF",
@@ -52,7 +52,7 @@ initialstate={ "registers":{ "A":0x00000000,
         "goal": "--",
         "condition": "1==0"
 }
-state=jQuery.extend(true, {}, initialstate)
+state=jQuery.extend(true, {}, initialstate);
 
 // Register button functions
 $("button, input[value='A']").click(function(){ addinst("A") });
@@ -98,13 +98,31 @@ $("button, input[value='0xE']").click(function(){ addinst("M0xE") });
 $("button, input[value='0xF']").click(function(){ addinst("M0xF") });
 // Add another one for updating the screen when a button is pressed
 $("button, input").on("click", update);
+// Detect when the help image is pressed to close it
+$("#everything #help").on("click", cyclehelp);
 
 // Intercept links
 $('#everything').delegate('a', 'click', function(event) {
   event.preventDefault();
   lvl=event.currentTarget.href.slice(-2)
-  loadlevel(parseInt(lvl))
+
+  // Show/hide help
+  if (lvl=="lp"){
+    cyclehelp();
+  }
+
+  // Process level links
+  else{
+    loadlevel(parseInt(lvl))
+  }
 });
+
+// Show or hide the help screen
+function cyclehelp(){
+  helpon=(helpon+1)%2;
+  jQuery('#help').css('opacity', helpon);
+  jQuery('#help').css('height', 650*helpon);
+}
 
 // Load a new level
 function loadlevel(n){
