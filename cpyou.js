@@ -12,6 +12,7 @@ levels=[
               },
   "flags": [0, 0, 0, 0, 0, 0, 0, 0],
   "history": [],
+  "program": [],
   "stack": [],
   "memory": {"M0x0": 0x1009F6AB, "M0x1": 0x55610FFF, "M0x2": 0x0055ABBF},
   "instruction": [],
@@ -28,6 +29,7 @@ levels=[
               },
   "flags": [0, 0, 0, 0, 0, 0, 0, 0],
   "history": [],
+  "program": [],
   "stack": [],
   "memory": {"M0x0": 0x02107010, "M0x1": 0x0109AE00},
   "instruction": [],
@@ -45,6 +47,7 @@ initialstate={
                     },
         "flags": [0, 0, 0, 0, 0, 0, 0, 0],
         "history": [],
+        "program": [],
         "stack": [],
         "memory": {},
         "instruction": [],
@@ -65,6 +68,7 @@ $("button, input[value='R']").click(function(){ addinst("R") });
 // Instruction button functions
 $("button, input[value='RUN']").click(function(){ runinst() });
 $("button, input[value='CLR']").click(function(){ clrinst() });
+$("button, input[value='<--']").click(function(){ proginst() });
 $("button, input[value='MOV']").click(function(){ addinst("MOV") });
 $("button, input[value='ADD']").click(function(){ addinst("ADD") });
 $("button, input[value='SUB']").click(function(){ addinst("SUB") });
@@ -82,23 +86,45 @@ $("button, input[value='2']").click(function(){ rptinst(2) });
 $("button, input[value='3']").click(function(){ rptinst(3) });
 $("button, input[value='4']").click(function(){ rptinst(4) });
 $("button, input[value='5']").click(function(){ rptinst(5) });
+// Program button functions
+$("button, input[value='CPY']").click(function(){ console.log("CPY") });
+$("button, input[value='EXE']").click(function(){ console.log("EXE") });
+$("button, input[value='RMI']").click(function(){ console.log("RMI") });
+$("button, input[value='DEL']").click(function(){ console.log("DEL") });
 // Memory button functions
-$("button, input[value='0x0']").click(function(){ addinst("M0x0") });
-$("button, input[value='0x1']").click(function(){ addinst("M0x1") });
-$("button, input[value='0x2']").click(function(){ addinst("M0x2") });
-$("button, input[value='0x3']").click(function(){ addinst("M0x3") });
-$("button, input[value='0x4']").click(function(){ addinst("M0x4") });
-$("button, input[value='0x5']").click(function(){ addinst("M0x5") });
-$("button, input[value='0x6']").click(function(){ addinst("M0x6") });
-$("button, input[value='0x7']").click(function(){ addinst("M0x7") });
-$("button, input[value='0x8']").click(function(){ addinst("M0x8") });
-$("button, input[value='0x9']").click(function(){ addinst("M0x9") });
-$("button, input[value='0xA']").click(function(){ addinst("M0xA") });
-$("button, input[value='0xB']").click(function(){ addinst("M0xB") });
-$("button, input[value='0xC']").click(function(){ addinst("M0xC") });
-$("button, input[value='0xD']").click(function(){ addinst("M0xD") });
-$("button, input[value='0xE']").click(function(){ addinst("M0xE") });
-$("button, input[value='0xF']").click(function(){ addinst("M0xF") });
+$("button, input[value='M0x0']").click(function(){ addinst("M0x0") });
+$("button, input[value='M0x1']").click(function(){ addinst("M0x1") });
+$("button, input[value='M0x2']").click(function(){ addinst("M0x2") });
+$("button, input[value='M0x3']").click(function(){ addinst("M0x3") });
+$("button, input[value='M0x4']").click(function(){ addinst("M0x4") });
+$("button, input[value='M0x5']").click(function(){ addinst("M0x5") });
+$("button, input[value='M0x6']").click(function(){ addinst("M0x6") });
+$("button, input[value='M0x7']").click(function(){ addinst("M0x7") });
+$("button, input[value='M0x8']").click(function(){ addinst("M0x8") });
+$("button, input[value='M0x9']").click(function(){ addinst("M0x9") });
+$("button, input[value='M0xA']").click(function(){ addinst("M0xA") });
+$("button, input[value='M0xB']").click(function(){ addinst("M0xB") });
+$("button, input[value='M0xC']").click(function(){ addinst("M0xC") });
+$("button, input[value='M0xD']").click(function(){ addinst("M0xD") });
+$("button, input[value='M0xE']").click(function(){ addinst("M0xE") });
+$("button, input[value='M0xF']").click(function(){ addinst("M0xF") });
+// Program button functions
+$("button, input[value='P0x0']").click(function(){ console.log("P0x0") });
+$("button, input[value='P0x1']").click(function(){ console.log("P0x1") });
+$("button, input[value='P0x2']").click(function(){ console.log("P0x2") });
+$("button, input[value='P0x3']").click(function(){ console.log("P0x3") });
+$("button, input[value='P0x4']").click(function(){ console.log("P0x4") });
+$("button, input[value='P0x5']").click(function(){ console.log("P0x5") });
+$("button, input[value='P0x6']").click(function(){ console.log("P0x6") });
+$("button, input[value='P0x7']").click(function(){ console.log("P0x7") });
+$("button, input[value='P0x8']").click(function(){ console.log("P0x8") });
+$("button, input[value='P0x9']").click(function(){ console.log("P0x9") });
+$("button, input[value='P0xA']").click(function(){ console.log("P0xA") });
+$("button, input[value='P0xB']").click(function(){ console.log("P0xB") });
+$("button, input[value='P0xC']").click(function(){ console.log("P0xC") });
+$("button, input[value='P0xD']").click(function(){ console.log("P0xD") });
+$("button, input[value='P0xE']").click(function(){ console.log("P0xE") });
+$("button, input[value='P0xF']").click(function(){ console.log("P0xF") });
 // Add another one for updating the screen when a button is pressed
 $("button, input").on("click", update);
 // Detect when the help image is pressed to close it
@@ -122,17 +148,31 @@ $('#everything').delegate('a', 'click', function(event) {
 
 // Show or hide the help screen by modifying the div height
 function cyclehelp(){
+
   helpon=(helpon+1)%2;
   jQuery('#help').css('height', 630*helpon);
 }
 
 // Load a new level
 function loadlevel(n){
+
   nlvl=levels[n-1]
   if (nlvl!=undefined) {
     state=jQuery.extend(true, {}, nlvl)
     update()
   }
+}
+
+// Adds the current instruction to the program memory
+function proginst(){
+
+  tempinst=jQuery.extend(true, [], state["instruction"]);
+  console.log(tempinst, tempinst.length)
+  if (tempinst.length>0){
+    state["program"]=state["program"].concat([tempinst])
+    state["instruction"]=[]
+  }
+  
 }
 
 // Adds stuff to the current instruction 
@@ -280,19 +320,32 @@ function update(){
   $("#registers #regdata").eq(3).text( ("0000000"+state["registers"]["R"].toString(16)).slice(-8) )
 
  
-  for (i=0; i<16; i++){
+  for (i=0; i<32; i++){
+
     // Update all the stack information
     nextst=state["stack"][i]
     if (nextst==undefined){nextst="00000000"}
     $("#stack #stackdata").eq(i).text(("0000000"+nextst.toString(16)).slice(-8))
+
     // Reset all memory
     $("#memory #memdata").eq(i).text("00000000")
+
     // Update history
     nexthi=state["history"][state["history"].length-i-1]
     if (nexthi==undefined){nexthi=[]}
     $("#history #histdata").eq(i).text(nexthi.join(" "))
+
     // Update flag data
     $("#registers #flagdata").eq(i).text(state["flags"][i])
+
+    // Update program 
+    nextprg=state["program"][i]
+    if (nextprg!=undefined){
+      $("#program #programdata").eq(i).text(nextprg.join(" "))
+    }
+    else {
+      $("#program #programdata").eq(i).text("--")
+    }
   }
 
   // Update memory from dict
