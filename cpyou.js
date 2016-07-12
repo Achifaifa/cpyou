@@ -29,10 +29,10 @@ levels=[
   "flags": [0, 0, 0, 0, 0, 0, 0, 0],
   "history": [],
   "stack": [],
-  "memory": {"M0x0": 0x85107010, "M0x1": 0x0109AE00},
+  "memory": {"M0x0": 0x02107010, "M0x1": 0x0109AE00},
   "instruction": [],
   "left": 30, 
-  "condition": "state['memory']['M0xF']==0x000d2c10"
+  "condition": "state['memory']['M0xF']==0x0106c210"
   
 }]
 
