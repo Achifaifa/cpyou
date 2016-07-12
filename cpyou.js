@@ -37,7 +37,8 @@ levels=[
 }]
 
 // Initial state
-initialstate={ "registers":{ "A":0x00000000, 
+initialstate={ 
+        "registers":{ "A":0x00000000, 
                       "B":0x00000000, 
                       "C":0x00000000, 
                       "R":0x00000000
@@ -52,6 +53,8 @@ initialstate={ "registers":{ "A":0x00000000,
         "goal": "--",
         "condition": "1==0"
 }
+
+// Copy (?) initial state to avoid referencing it
 state=jQuery.extend(true, {}, initialstate);
 
 // Register button functions
@@ -117,10 +120,9 @@ $('#everything').delegate('a', 'click', function(event) {
   }
 });
 
-// Show or hide the help screen
+// Show or hide the help screen by modifying the div height
 function cyclehelp(){
   helpon=(helpon+1)%2;
-  jQuery('#help').css('opacity', helpon);
   jQuery('#help').css('height', 630*helpon);
 }
 
@@ -171,8 +173,6 @@ function checkst(){
     alert("That's right!")
     state=jQuery.extend(true, {}, initialstate)
   }
-  
-
 }
 
 // Runs the current instruction
@@ -192,7 +192,6 @@ function checkst(){
 //
 // 0      1         2           3   4   5   6   7
 // Sign | Compare | Not Equal | X | X | X | X | Stack Full warning
-//
 function runinst(){
 
   st=state["instruction"]

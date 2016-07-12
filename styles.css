@@ -1,5 +1,5 @@
 #everything{
-  width: 800px;
+  width: 1000px;
   background: #AAA;
   position: relative;
   text-align: center;
@@ -7,23 +7,53 @@
   padding-top: 5px;
   margin-top: 0px;
   border: 1px solid;
+  display: table;
+  clear: both;
+}
+
+#help{
+  width: 1000px;
+  height: 0;
+  z-index: 999;
+  background-image: url("./img/help.png");
+  float: left;
+  position: absolute;
+}
+
+#program{
+  border-top: 1px solid;
+  width: 200px;
+  background: #AAA;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  float: left;
 }
 
 #registers{
   width: 400px;
   background: #AAA;
-  float: left;
   border-top: 1px solid;
   padding-top: 10px;
+  float: left;
 
 }
 
-#stack{
-  width: 200px;
-  background: #AAA;
+#instructions{
+  width: 400px;
+  background: #CCC;
+  float: left;
   text-align: center;
-  float: right;
-  border-top: 1px solid;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#history{
+  width: 300px;
+  background: #CCC;  
+  float: left;
+  text-align: left;
+  padding-left: 100px;
+  padding-bottom: 10px;
   padding-top: 10px;
 }
 
@@ -36,45 +66,32 @@
   padding-top: 10px;
 }
 
-#instructions{
-  width: 400px;
-  background: #CCC;
+#stack{
+  width: 200px;
+  background: #AAA;
   text-align: center;
+  float: right;
+  border-top: 1px solid;
   padding-top: 10px;
-  padding-bottom: 10px;
 }
 
 #levels{
-  width: 800px;
+  width: 1000px;
   background: #888;
-  margin: auto;
-  bottom: 0;
-  float: left;
+  bottom: 0px;
   padding-top: 5px;
   padding-bottom: 5px;
   border: 1px solid;
   margin-left: -1px;
-}
-
-#history{
-  width: 300px;
-  background: #CCC;
-  text-align: left;
-  padding-left: 100px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-}
-
-#help{
-  width: 800px;
-  height: 0;
-  z-index: 999;
-  background-image: url("./img/help.png");
-  float: left;
-  position: absolute;
+  position:relative;
+  margin: auto;
 }
 
 #stackdata{
+  display: inline-block;
+}
+
+#programdata{
   display: inline-block;
 }
 
