@@ -87,6 +87,7 @@
   margin-left: -1px;
   position:relative;
   margin: auto;
+  text-align: center;
 }
 
 #stackdata{
@@ -122,6 +123,10 @@
 }
 
 #levelno{
+  display: inline-block;
+}
+
+#progstatus{
   display: inline-block;
 }
 

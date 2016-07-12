@@ -88,6 +88,7 @@ $("button, input[value='4']").click(function(){ rptinst(4) });
 $("button, input[value='5']").click(function(){ rptinst(5) });
 // Program button functions
 $("button, input[value='CPY']").click(function(){ console.log("CPY") });
+$("button, input[value='STP']").click(function(){ console.log("CPY") });
 $("button, input[value='EXE']").click(function(){ console.log("EXE") });
 $("button, input[value='RMI']").click(function(){ console.log("RMI") });
 $("button, input[value='DEL']").click(function(){ console.log("DEL") });
@@ -167,8 +168,7 @@ function loadlevel(n){
 function proginst(){
 
   tempinst=jQuery.extend(true, [], state["instruction"]);
-  console.log(tempinst, tempinst.length)
-  if (tempinst.length>0){
+  if (tempinst.length>0 && parseinst()==1){
     state["program"]=state["program"].concat([tempinst])
     state["instruction"]=[]
   }
@@ -213,6 +213,38 @@ function checkst(){
     alert("That's right!")
     state=jQuery.extend(true, {}, initialstate)
   }
+}
+
+// Returns 1 if the current instruction is legit
+function parseinst(){
+
+  inst=state["instruction"]
+  
+  if (["ADD","SUB","CMP","NOP"].indexOf(inst[0])!=-1 && inst.length!=1){
+    return 0
+  }
+  if (inst[0]=="PUT" && (["A", "B", "R"].indexOf(inst[1])==-1 || inst.length!=2)){
+    return 0
+  }
+  if (inst[0]=="POP" && (["A", "B"].indexOf(inst[1])==-1 || inst.length!=2)){
+    return 0
+  }
+  if (["SHR", "SHL"].indexOf(inst[0])!=-1 && (["A","B"].indexOf(inst[1])==-1 || inst.length!=2)){
+    return 0
+  }
+  if  (inst[0]=="MOV"){
+    if (inst.length!=3) {
+      return 0
+    } 
+    if (["A", "B", "R", "C"].indexOf(inst[1])==-1 && inst[1].indexOf("M0x")==-1) {
+      return 0
+    }
+    if (["A", "B", "R"].indexOf(inst[2])==-1 && inst[2].indexOf("M0x")==-1) {
+      return 0
+    }
+  }
+
+  return 1
 }
 
 // Runs the current instruction
