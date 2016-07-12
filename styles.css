@@ -67,7 +67,7 @@
 
 #help{
   width: 800px;
-  height: 650;
+  height: 0;
   z-index: 999;
   background-image: url("./img/help.png");
   float: left;

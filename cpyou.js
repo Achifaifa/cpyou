@@ -121,7 +121,7 @@ $('#everything').delegate('a', 'click', function(event) {
 function cyclehelp(){
   helpon=(helpon+1)%2;
   jQuery('#help').css('opacity', helpon);
-  jQuery('#help').css('height', 650*helpon);
+  jQuery('#help').css('height', 630*helpon);
 }
 
 // Load a new level
