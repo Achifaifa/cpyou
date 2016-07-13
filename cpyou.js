@@ -87,11 +87,12 @@ $("button, input[value='3']").click(function(){ rptinst(3) });
 $("button, input[value='4']").click(function(){ rptinst(4) });
 $("button, input[value='5']").click(function(){ rptinst(5) });
 // Program button functions
-$("button, input[value='CPY']").click(function(){ console.log("CPY") });
-$("button, input[value='STP']").click(function(){ console.log("CPY") });
-$("button, input[value='EXE']").click(function(){ console.log("EXE") });
-$("button, input[value='RMI']").click(function(){ console.log("RMI") });
-$("button, input[value='DEL']").click(function(){ console.log("DEL") });
+$("button, input[value='RSI']").click(function(){ modprog("RSI") });
+$("button, input[value='STP']").click(function(){ modprog("STP") });
+$("button, input[value='CPY']").click(function(){ modprog("CPY") });
+$("button, input[value='EXE']").click(function(){ modprog("EXE") });
+$("button, input[value='RMI']").click(function(){ modprog("RMI") });
+$("button, input[value='DEL']").click(function(){ modprog("DEL") });
 // Memory button functions
 $("button, input[value='M0x0']").click(function(){ addinst("M0x0") });
 $("button, input[value='M0x1']").click(function(){ addinst("M0x1") });
@@ -132,7 +133,7 @@ $("button, input").on("click", update);
 $("#everything #help").on("click", cyclehelp);
 
 // Intercept links
-$('#everything').delegate('a', 'click', function(event) {
+$('body').delegate('a', 'click', function(event) {
   event.preventDefault();
   lvl=event.currentTarget.href.slice(-2)
 
@@ -142,7 +143,7 @@ $('#everything').delegate('a', 'click', function(event) {
   }
 
   // Process level links
-  else{
+  else {
     loadlevel(parseInt(lvl))
   }
 });
@@ -174,6 +175,32 @@ function proginst(){
   }
   
 }
+
+//["RSI", "STP", "EXE", "CPY", "RMI", "DEL"]
+// Processes the program modification buttons
+function modprog(inst){
+
+  if (inst=="RSI"){
+    $("#progstatus").text("Run Single")
+  }
+  else if (inst=="STP"){
+    $("#progstatus").text("Running Step")
+  }
+  else if (inst=="EXE"){
+    $("#progstatus").text("Running")
+  }
+  else if (inst=="CPY"){
+    $("#progstatus").text("Copy")
+  }
+  else if (inst=="RMI"){
+    $("#progstatus").text("Remove")
+  }
+  else if (inst=="DEL"){
+    $("#progstatus").text("Clear Program (Confirm)")
+  }
+}
+
+
 
 // Adds stuff to the current instruction 
 function addinst(inst){
@@ -323,7 +350,8 @@ function runinst(){
   else if (st[0]=="POP") {
     if (st.length!=2) {return}
     if (["A", "B", "R"].indexOf(st[1])==-1) {return}
-    state["registers"][st[1]]=state["stack"].pop()
+    state["registers"][st[1]]=state["stack"][0]
+    state["stack"]=state["stack"].slice(-state["stack"].length+1)
   }
 
   else if (st[0]=="CMP"){
@@ -376,7 +404,7 @@ function update(){
       $("#program #programdata").eq(i).text(nextprg.join(" "))
     }
     else {
-      $("#program #programdata").eq(i).text("--")
+      $("#program #programdata").eq(i).text("NOP")
     }
   }
 
