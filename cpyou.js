@@ -66,7 +66,7 @@ $("button, input[value='B']").click(function(){ addinst("B") });
 $("button, input[value='C']").click(function(){ addinst("C") });
 $("button, input[value='R']").click(function(){ addinst("R") });
 // Instruction button functions
-$("button, input[value='RUN']").click(function(){ runinst() });
+$("button, input[value='RUN']").click(function(){ runinst(state["instruction"], 0) });
 $("button, input[value='CLR']").click(function(){ clrinst() });
 $("button, input[value='<--']").click(function(){ modprog("<--") });
 $("button, input[value='MOV']").click(function(){ addinst("MOV") });
@@ -309,83 +309,87 @@ function parseinst(){
 //
 // 0      1         2           3   4   5   6   7
 // Sign | Compare | Not Equal | X | X | X | X | Stack Full warning
-function runinst(){
+//
+// source specifies the source of the instruction
+// 0 -> Regular (Instruction slot)
+// 1 -> Program 
+function runinst(inst, source){
 
-  st=state["instruction"]
+  if (inst.length==0) {return}
 
-  if (st.length==0) {return}
-
-  if (st[0]=="MOV") {
-    if (["A", "B", "R", "C"].indexOf(st[1])==-1 && st[1].indexOf("M0x")==-1) {return}
-    if (["A", "B", "R"].indexOf(st[2])==-1 && st[2].indexOf("M0x")==-1) {return}
+  if (inst[0]=="MOV") {
+    if (["A", "B", "R", "C"].indexOf(inst[1])==-1 && inst[1].indexOf("M0x")==-1) {return}
+    if (["A", "B", "R"].indexOf(inst[2])==-1 && inst[2].indexOf("M0x")==-1) {return}
     from="memory"
-    if (["A", "B", "R", "C"].indexOf(st[1])!=-1) {
+    if (["A", "B", "R", "C"].indexOf(inst[1])!=-1) {
       from="registers"
     }
     to="memory"
-    if (["A", "B", "R"].indexOf(st[2])!=-1) {
+    if (["A", "B", "R"].indexOf(inst[2])!=-1) {
       to="registers"
     }
 
-    state[to][st[2]]=state[from][st[1]]
+    state[to][inst[2]]=state[from][inst[1]]
   }
 
-  else if (st[0]=="SHR") {
-    if (st.length!=2){return}
-    if (["A", "B"].indexOf(st[1])==-1) {return}
+  else if (inst[0]=="SHR") {
+    if (inst.length!=2){return}
+    if (["A", "B"].indexOf(inst[1])==-1) {return}
 
-    state["registers"][st[1]]=state["registers"][st[1]]>>1
+    state["registers"][inst[1]]=state["registers"][inst[1]]>>1
   }
 
-  else if (st[0]=="SHL") {
-    if (st.length!=2){return}
-    if (["A", "B"].indexOf(st[1])==-1) {return}
+  else if (inst[0]=="SHL") {
+    if (inst.length!=2){return}
+    if (["A", "B"].indexOf(inst[1])==-1) {return}
 
-    state["registers"][st[1]]=state["registers"][st[1]]<<1
+    state["registers"][inst[1]]=state["registers"][inst[1]]<<1
   }
 
-  else if (st[0]=="ADD") { 
-    if (st.length!=1) {return}
+  else if (inst[0]=="ADD") { 
+    if (inst.length!=1) {return}
     state["registers"]["R"] = state["registers"]["A"]+state["registers"]["B"]
   }
 
-  else if (st[0]=="SUB") { 
-    if (st.length!=1) {return}
+  else if (inst[0]=="SUB") { 
+    if (inst.length!=1) {return}
     res = state["registers"]["A"]-state["registers"]["B"]
     if (res<0){
-      res=abs(res)
+      res=Math.abs(res)
       state["flags"][0]=1
     }
     state["registers"]["R"]=res
   }
 
-  else if (st[0]=="PUT") {
-    if (st.length!=2) {return}
-    if (["A", "B", "R"].indexOf(st[1])==-1) {return}
-    state["stack"]=[state["registers"][st[1]]].concat(state["stack"])
+  else if (inst[0]=="PUT") {
+    if (inst.length!=2) {return}
+    if (["A", "B", "R"].indexOf(inst[1])==-1) {return}
+    state["stack"]=[state["registers"][inst[1]]].concat(state["stack"])
   }
 
-  else if (st[0]=="POP") {
-    if (st.length!=2) {return}
-    if (["A", "B", "R"].indexOf(st[1])==-1) {return}
-    state["registers"][st[1]]=state["stack"][0]
+  else if (inst[0]=="POP") {
+    if (inst.length!=2) {return}
+    if (["A", "B", "R"].indexOf(inst[1])==-1) {return}
+    state["registers"][inst[1]]=state["stack"][0]
     state["stack"]=state["stack"].slice(-state["stack"].length+1)
   }
 
-  else if (st[0]=="CMP"){
-    if (st.length!=1) {return}
+  else if (inst[0]=="CMP"){
+    if (inst.length!=1) {return}
     if (state["registers"]["A"]>state["registers"]["B"]) {state["flags"][1]=1}
     else {state["flags"][1]=0}
     if (state["registers"]["A"]!=state["registers"]["B"]) {state["flags"][2]=1}
   }
 
-  else if (st[0]=="NOP"){
-    if (st.length!=1) {return}
+  else if (inst[0]=="NOP"){
+    if (inst.length!=1) {return}
   }
 
-  state["left"]-=1
-  addhist()
-  clrinst()
+  
+  if (source==0) {
+    addhist();
+    clrinst();
+  }
   checkst()
 }
 
