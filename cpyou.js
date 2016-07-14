@@ -16,7 +16,6 @@ levels=[
   "stack": [],
   "memory": {"M0x0": 0x1009F6AB, "M0x1": 0x55610FFF, "M0x2": 0x0055ABBF},
   "instruction": [],
-  "left": 10, //Best: 6
   "condition": "state['memory']['M0xF']==0x65c0b269"
   
 },
@@ -33,7 +32,6 @@ levels=[
   "stack": [],
   "memory": {"M0x0": 0x02107010, "M0x1": 0x0109AE00},
   "instruction": [],
-  "left": 30, 
   "condition": "state['memory']['M0xF']==0x0106c210"
   
 }]
@@ -51,7 +49,6 @@ initialstate={
         "stack": [],
         "memory": {},
         "instruction": [],
-        "left": 50,
         "level": "--",
         "goal": "--",
         "condition": "1==0"
@@ -252,8 +249,6 @@ function checkst(){
   else if (state["stack"].length>14) {state["flags"][7]=1}
   else if (state["stack"].length<=14) {state["flags"][7]=0}
 
-  if (state["left"]<=0) {alert("No more moves!\nGame over")}
-
   if (eval(state["condition"])) {
     alert("That's right!")
     state=jQuery.extend(true, {}, initialstate)
@@ -442,7 +437,6 @@ function update(){
 
   $("#levelno").text(state["level"])
   $("#goal").text(state["goal"])
-  $("#instructions #instleft").text(state["left"])
   $("#instructions #instruction").text(state["instruction"].join(" "))
   $("#stack #stacklen").text(state["stack"].length)
 
