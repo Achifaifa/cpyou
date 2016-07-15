@@ -264,7 +264,11 @@ function modprog(inst){
       $("#progstatus").text("Copy "+inst)
     }
     else if (currentpr.slice(0,-1)=="Copy P0x"){
-      state["program"][inst]=jQuery.extend(true, [], state["program"][currentpr.slice(-4)]);
+      if (state["program"][inst]!=undefined){
+        if (state["program"][inst].length!=0){
+          state["program"][inst]=jQuery.extend(true, [], state["program"][currentpr.slice(-4)]);
+        }
+      }
       $("#progstatus").text("Idle")
     }
     else if (currentpr=="Remove"){
@@ -479,7 +483,10 @@ function update(){
 
     // Update program from dict
     val=state["program"]["P0x"+i]
-    if (val==[]){
+    if (val==undefined){
+      delete state["program"]["P0x"+i]
+    }
+    else if (val.length==0){
       delete state["program"]["P0x"+i]
     }
     lpoint=parseInt(i, 16)
@@ -495,7 +502,7 @@ function update(){
     }
   })
 
-  // Show current instruction in green
+  // Highlight current instruction
   $("#program #programdata").eq(state["ppointer"]).css("color", "#00bb00")
 
   // Update level info
