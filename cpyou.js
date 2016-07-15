@@ -13,6 +13,7 @@ levels=[
   "flags": [0, 0, 0, 0, 0, 0, 0, 0],
   "history": [],
   "program": {},
+  "ppointer": 0,
   "stack": [],
   "memory": {"M0x0": 0x1009F6AB, "M0x1": 0x55610FFF, "M0x2": 0x0055ABBF},
   "instruction": [],
@@ -29,6 +30,7 @@ levels=[
   "flags": [0, 0, 0, 0, 0, 0, 0, 0],
   "history": [],
   "program": {},
+  "ppointer": 0,
   "stack": [],
   "memory": {"M0x0": 0x02107010, "M0x1": 0x0109AE00},
   "instruction": [],
@@ -38,20 +40,21 @@ levels=[
 
 // Initial state
 initialstate={ 
-        "registers":{ "A":0x00000000, 
-                      "B":0x00000000, 
-                      "C":0x00000000, 
-                      "R":0x00000000
-                    },
-        "flags": [0, 0, 0, 0, 0, 0, 0, 0],
-        "history": [],
-        "program": {},
-        "stack": [],
-        "memory": {},
-        "instruction": [],
-        "level": "--",
-        "goal": "--",
-        "condition": "1==0"
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "level": "--",
+  "goal": "--",
+  "condition": "1==0"
 }
 
 // Copy (?) initial state to avoid referencing it
@@ -90,6 +93,10 @@ $("button, input[value='CPY']").click(function(){ modprog("CPY") });
 $("button, input[value='EXE']").click(function(){ modprog("EXE") });
 $("button, input[value='RMI']").click(function(){ modprog("RMI") });
 $("button, input[value='DEL']").click(function(){ modprog("DEL") });
+$("button, input[value='v']").click(function(){ modprog("v") });
+$("button, input[value='vv']").click(function(){ modprog("vv") });
+$("button, input[value='^']").click(function(){ modprog("^") });
+$("button, input[value='^^']").click(function(){ modprog("^^") });
 // Memory button functions
 $("button, input[value='M0x0']").click(function(){ addinst("M0x0") });
 $("button, input[value='M0x1']").click(function(){ addinst("M0x1") });
@@ -168,6 +175,25 @@ function modprog(inst){
 
   currentpr=$("#progstatus").text()
 
+  // Instruction pointer movement
+  if (inst=="v"){
+    if (state["ppointer"]<15){
+      state["ppointer"]+=1
+    }
+  }
+  if (inst=="vv"){
+    state["ppointer"]=15
+  }
+  if (inst=="^"){
+    if (state["ppointer"]>0){
+      state["ppointer"]-=1
+    }
+  }
+  if (inst=="^^"){
+    state["ppointer"]=0
+  }
+
+  // Instruction removal
   if (inst=="RSI"){
     $("#progstatus").text("Run Single")
   }
@@ -195,12 +221,14 @@ function modprog(inst){
     else {
       $("#progstatus").text("¿Clear program?")
     }
-    
   }
   else if (inst.slice(0,3)=="P0x"){
-    if (currentpr=="Select slot" && parseinst()==1){
-      state["program"][inst]=jQuery.extend(true, [], state["instruction"]);
-      state["instruction"]=[]
+
+    if (currentpr=="Select slot"){
+      if (parseinst()==1){
+        state["program"][inst]=jQuery.extend(true, [], state["instruction"]);
+        state["instruction"]=[]
+      }
       $("#progstatus").text("Idle")
     }
     else if (currentpr=="Copy"){
@@ -231,6 +259,7 @@ function clrinst(){
 
 // Puts a function from the history into the instruction slot
 function rptinst(n){
+
   ni=state["history"][state["history"].length-n-1]
   if (ni!=undefined) {state["instruction"]=ni.slice(-3)}
 }
@@ -380,7 +409,6 @@ function runinst(inst, source){
     if (inst.length!=1) {return}
   }
 
-  
   if (source==0) {
     addhist();
     clrinst();
@@ -395,7 +423,6 @@ function update(){
   $("#registers #regdata").eq(1).text( ("0000000"+state["registers"]["B"].toString(16)).slice(-8) )
   $("#registers #regdata").eq(2).text( ("0000000"+state["registers"]["C"].toString(16)).slice(-8) )
   $("#registers #regdata").eq(3).text( ("0000000"+state["registers"]["R"].toString(16)).slice(-8) )
-
  
   for (i=0; i<32; i++){
 
@@ -416,17 +443,21 @@ function update(){
     $("#registers #flagdata").eq(i).text(state["flags"][i])
 
     // Reset all program
-      $("#program #programdata").eq(i).text("--")
+    $("#program #programdata").eq(i).text("--")
   }
 
- 
   memaddr.forEach(function(i){
 
     // Update program from dict
     val=state["program"]["P0x"+i]
-    if (val!=undefined){
-      $("#program #programdata").eq(parseInt(i, 16)).text( val.join(" ") )
+    if (val==[]){
+      delete state["program"]["P0x"+i]
     }
+    lpoint=parseInt(i, 16)
+    if (val!=undefined){
+      $("#program #programdata").eq(lpoint).text( val.join(" ") )
+    }
+    $("#program #programdata").eq(lpoint).css("color", "#000000")
 
     // Update memory from dict
     val=state["memory"]["M0x"+i]
@@ -435,14 +466,23 @@ function update(){
     }
   })
 
+  // Show current instruction in green
+  $("#program #programdata").eq(state["ppointer"]).css("color", "#00bb00")
+
+  // Update level info
   $("#levelno").text(state["level"])
   $("#goal").text(state["goal"])
+
+  // Update current instruction
   $("#instructions #instruction").text(state["instruction"].join(" "))
+
+  // Show stack level indicator
   $("#stack #stacklen").text(state["stack"].length)
 
   checkst()
 }
 
+// Initial update of the screen
 update();
 
 });//end of ready
