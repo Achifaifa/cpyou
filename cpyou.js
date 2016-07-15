@@ -279,8 +279,8 @@ function modprog(inst){
       $("#progstatus").text("Copy "+inst)
     }
     else if (currentpr.slice(0,-1)=="Copy P0x"){
-      if (state["program"][inst]!=undefined){
-        if (state["program"][inst].length!=0){
+      if (currentpr.slice(-4)!=undefined){
+        if (currentpr.slice(-4).length!=0){
           state["program"][inst]=jQuery.extend(true, [], state["program"][currentpr.slice(-4)]);
         }
       }
@@ -296,6 +296,9 @@ function modprog(inst){
 // Adds stuff to the current instruction 
 function addinst(inst){
 
+  if (state["instruction"][0]!=undefined){
+    if (state["instruction"][0].slice(0,3)=="P0x"){state["instruction"]==[]}
+  }
   if (state["instruction"].length<3) {state["instruction"].push(inst)}
 }
 
@@ -328,7 +331,6 @@ function checkst(){
 
   if (eval(state["condition"])) {
     alert("That's right!")
-    state=jQuery.extend(true, {}, initialstate)
   }
 }
 
@@ -572,6 +574,13 @@ function update(){
 
   // Show stack level indicator
   $("#stack #stacklen").text(state["stack"].length)
+
+  // Delete unnecessary program pointers
+  if (state["instruction"][0]!=undefined){
+    if (state["instruction"].slice(-1)[0].slice(0,3)=="P0x"){
+      state["instruction"]=state["instruction"].slice(0,-1)
+    }
+  }
 
   checkst()
 }
