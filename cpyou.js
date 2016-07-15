@@ -169,6 +169,14 @@ function loadlevel(n){
   }
 }
 
+// Increases the instruction pointer by n (1 or -1)
+function ppointerinc(n){
+
+  p=state["ppointer"]
+  if (n==1 && p<15){state["ppointer"]+=1}
+  if (n==-1 && p>0){state["ppointer"]-=1}
+}
+
 //["RSI", "STP", "EXE", "CPY", "RMI", "DEL"]
 // Processes the program modification buttons
 function modprog(inst){
@@ -177,17 +185,13 @@ function modprog(inst){
 
   // Instruction pointer movement
   if (inst=="v"){
-    if (state["ppointer"]<15){
-      state["ppointer"]+=1
-    }
+    ppointerinc(1)
   }
   if (inst=="vv"){
     state["ppointer"]=15
   }
   if (inst=="^"){
-    if (state["ppointer"]>0){
-      state["ppointer"]-=1
-    }
+    ppointerinc(-1)
   }
   if (inst=="^^"){
     state["ppointer"]=0
@@ -196,21 +200,13 @@ function modprog(inst){
   // Instruction removal
   if (inst=="RSI"){
     $("#progstatus").text("Run Single")
-  }
-  else if (inst=="STP"){
-    $("#progstatus").text("Running Step")
-  }
-  else if (inst=="EXE"){
-    $("#progstatus").text("Running")
-  }
-  else if (inst=="CPY"){
-    $("#progstatus").text("Copy")
+    runinst(state["program"]["P0x"+memaddr[state["ppointer"]]], 1)
+    ppointerinc(1)
+    setTimeout(function (){}, 1000)
+    $("#progstatus").text("Idle")
   }
   else if (inst=="RMI"){
     $("#progstatus").text("Remove")
-  }
-  else if (inst=="<--"){
-    $("#progstatus").text("Select slot")
   }
   else if (inst=="DEL"){
 
@@ -222,6 +218,24 @@ function modprog(inst){
       $("#progstatus").text("¿Clear program?")
     }
   }
+
+  // Program run
+  else if (inst=="STP"){
+    $("#progstatus").text("Running Step")
+  }
+  else if (inst=="EXE"){
+    $("#progstatus").text("Running")
+  }
+  
+  // Instruction add and copy
+  else if (inst=="<--"){
+    $("#progstatus").text("Select slot")
+  }
+  else if (inst=="CPY"){
+    $("#progstatus").text("Copy")
+  }
+  
+  // Instruction selection processing
   else if (inst.slice(0,3)=="P0x"){
 
     if (currentpr=="Select slot"){
