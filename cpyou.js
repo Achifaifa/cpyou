@@ -177,6 +177,21 @@ function ppointerinc(n){
   if (n==-1 && p>0){state["ppointer"]-=1}
 }
 
+// Runs the n next instructions in the program
+// Should be called with a setTimeout of 1s
+function rsi(n){
+
+  if (n==0){return}
+
+  inst=state["program"]["P0x"+memaddr[state["ppointer"]]]
+  if (inst!=undefined){
+    runinst(inst, 1)
+  }
+  ppointerinc(1)
+  update()
+  setTimeout(rsi, 1000, n-1)
+}
+
 //["RSI", "STP", "EXE", "CPY", "RMI", "DEL"]
 // Processes the program modification buttons
 function modprog(inst){
@@ -198,13 +213,6 @@ function modprog(inst){
   }
 
   // Instruction removal
-  if (inst=="RSI"){
-    $("#progstatus").text("Run Single")
-    runinst(state["program"]["P0x"+memaddr[state["ppointer"]]], 1)
-    ppointerinc(1)
-    setTimeout(function (){}, 1000)
-    $("#progstatus").text("Idle")
-  }
   else if (inst=="RMI"){
     $("#progstatus").text("Remove")
   }
@@ -220,11 +228,18 @@ function modprog(inst){
   }
 
   // Program run
+  if (inst=="RSI"){
+    $("#progstatus").text("Run Single")
+  }
   else if (inst=="STP"){
     $("#progstatus").text("Running Step")
+    setTimeout(rsi,1000, 1)
+    $("#progstatus").text("Idle")
   }
   else if (inst=="EXE"){
     $("#progstatus").text("Running")
+    setTimeout(rsi, 1000, 15-state["ppointer"])
+    $("#progstatus").text("Idle")
   }
   
   // Instruction add and copy
