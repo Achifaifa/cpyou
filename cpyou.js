@@ -79,6 +79,11 @@ $("button, input[value='RPT']").click(function(){ addinst("RPT") });
 $("button, input[value='SHL']").click(function(){ addinst("SHL") });
 $("button, input[value='SHR']").click(function(){ addinst("SHR") });
 $("button, input[value='NOP']").click(function(){ addinst("NOP") });
+$("button, input[value='GTO']").click(function(){ addinst("GTO") });
+$("button, input[value='JNG']").click(function(){ addinst("JNG") });
+$("button, input[value='JGE']").click(function(){ addinst("JGE") });
+$("button, input[value='JLE']").click(function(){ addinst("JLE") });
+$("button, input[value='JZR']").click(function(){ addinst("JZR") });
 // History button functions
 $("button, input[value='0']").click(function(){ rptinst(0) });
 $("button, input[value='1']").click(function(){ rptinst(1) });
@@ -115,22 +120,22 @@ $("button, input[value='M0xD']").click(function(){ addinst("M0xD") });
 $("button, input[value='M0xE']").click(function(){ addinst("M0xE") });
 $("button, input[value='M0xF']").click(function(){ addinst("M0xF") });
 // Program button functions
-$("button, input[value='P0x0']").click(function(){ modprog("P0x0") });
-$("button, input[value='P0x1']").click(function(){ modprog("P0x1") });
-$("button, input[value='P0x2']").click(function(){ modprog("P0x2") });
-$("button, input[value='P0x3']").click(function(){ modprog("P0x3") });
-$("button, input[value='P0x4']").click(function(){ modprog("P0x4") });
-$("button, input[value='P0x5']").click(function(){ modprog("P0x5") });
-$("button, input[value='P0x6']").click(function(){ modprog("P0x6") });
-$("button, input[value='P0x7']").click(function(){ modprog("P0x7") });
-$("button, input[value='P0x8']").click(function(){ modprog("P0x8") });
-$("button, input[value='P0x9']").click(function(){ modprog("P0x9") });
-$("button, input[value='P0xA']").click(function(){ modprog("P0xA") });
-$("button, input[value='P0xB']").click(function(){ modprog("P0xB") });
-$("button, input[value='P0xC']").click(function(){ modprog("P0xC") });
-$("button, input[value='P0xD']").click(function(){ modprog("P0xD") });
-$("button, input[value='P0xE']").click(function(){ modprog("P0xE") });
-$("button, input[value='P0xF']").click(function(){ modprog("P0xF") });
+$("button, input[value='P0x0']").click(function(){ modprog("P0x0"); addinst("P0x0") });
+$("button, input[value='P0x1']").click(function(){ modprog("P0x1"); addinst("P0x1") });
+$("button, input[value='P0x2']").click(function(){ modprog("P0x2"); addinst("P0x2") });
+$("button, input[value='P0x3']").click(function(){ modprog("P0x3"); addinst("P0x3") });
+$("button, input[value='P0x4']").click(function(){ modprog("P0x4"); addinst("P0x4") });
+$("button, input[value='P0x5']").click(function(){ modprog("P0x5"); addinst("P0x5") });
+$("button, input[value='P0x6']").click(function(){ modprog("P0x6"); addinst("P0x6") });
+$("button, input[value='P0x7']").click(function(){ modprog("P0x7"); addinst("P0x7") });
+$("button, input[value='P0x8']").click(function(){ modprog("P0x8"); addinst("P0x8") });
+$("button, input[value='P0x9']").click(function(){ modprog("P0x9"); addinst("P0x9") });
+$("button, input[value='P0xA']").click(function(){ modprog("P0xA"); addinst("P0xA") });
+$("button, input[value='P0xB']").click(function(){ modprog("P0xB"); addinst("P0xB") });
+$("button, input[value='P0xC']").click(function(){ modprog("P0xC"); addinst("P0xC") });
+$("button, input[value='P0xD']").click(function(){ modprog("P0xD"); addinst("P0xD") });
+$("button, input[value='P0xE']").click(function(){ modprog("P0xE"); addinst("P0xE") });
+$("button, input[value='P0xF']").click(function(){ modprog("P0xF"); addinst("P0xF") });
 // Add another one for updating the screen when a button is pressed
 $("button, input").on("click", update);
 // Detect when the help image is pressed to close it
@@ -192,8 +197,18 @@ function rsi(n){
   setTimeout(rsi, 1000, n-1)
 }
 
-//["RSI", "STP", "EXE", "CPY", "RMI", "DEL"]
 // Processes the program modification buttons
+//
+// RSI -> Run single instruction
+// STP -> Run a step (Run instruction, advance pointer)
+// EXE -> Run entire program
+// CPY -> Copy an instruction to another slot
+// RMI -> Remove instruction
+// DEL -> Delete entire program
+// v   -> Increase pointer
+// vv  -> Move pointer to the last instruction
+// ^   -> Decrease pointer
+// ^^  -> Reset pointer
 function modprog(inst){
 
   currentpr=$("#progstatus").text()
@@ -352,6 +367,8 @@ function parseinst(){
 // Runs the current instruction
 // Instruction set:
 //
+// General instructions
+//
 // [X] MOV X Y -> Moves the contents of X to Y
 // [X] ADD     -> Adds A and B and puts the result in R
 // [X] SUB     -> Subtracts A and B and puts the result in R
@@ -361,6 +378,14 @@ function parseinst(){
 // [X] SHL X   -> Shifts bits to the left in X (A or B)
 // [X] SHR X   -> Shifts bits to the right in X (A or B)
 // [X] NOP     -> Does nothing
+//
+// To-memory only instructions
+//
+// [ ] GTO P   -> Goto instruction P
+// [ ] JNG P   -> Jump to instruction P if the negative flag is 1
+// [ ] JGE P   -> Jump to instruction P if the comparison was greater or equal
+// [ ] JLE P   -> Jump to instruction P if the comparison was less
+// [ ] JZR P   -> Jump to instruction P if R is 0
 //
 // Flags:
 //
@@ -374,7 +399,7 @@ function runinst(inst, source){
 
   if (inst.length==0) {return}
 
-  if (inst[0]=="MOV") {
+  else if (inst[0]=="MOV") {
     if (["A", "B", "R", "C"].indexOf(inst[1])==-1 && inst[1].indexOf("M0x")==-1) {return}
     if (["A", "B", "R"].indexOf(inst[2])==-1 && inst[2].indexOf("M0x")==-1) {return}
     from="memory"
@@ -442,10 +467,43 @@ function runinst(inst, source){
     if (inst.length!=1) {return}
   }
 
-  if (source==0) {
+  if (source==0 && ["GTO", "JNG", "JGE", "JLE", "JZR"].indexOf(inst[0])==-1) {
     addhist();
     clrinst();
   }
+
+  // Program only instruction processing
+  else if (source==1 && inst.length==2 && inst[1].slice(0,3)=="P0x"){
+
+    if (inst[0]=="GTO"){
+      state["ppointer"]=memaddr.indexOf(inst[1].slice(-1))-1
+    }
+
+    if (inst[0]=="JNG"){
+      if (state["flags"][0]==1){
+        state["ppointer"]=memaddr.indexOf(inst[1].slice(-1))-1
+      }
+    }
+
+    if (inst[0]=="JGE"){
+      if (state["flags"][1]==1){
+        state["ppointer"]=memaddr.indexOf(inst[1].slice(-1))-1
+      }
+    }
+
+    if (inst[0]=="JLE"){
+      if (state["flags"][1]==0 && state["flags"][2]==1){
+        state["ppointer"]=memaddr.indexOf(inst[1].slice(-1))-1
+      }
+    }
+
+    if (inst[0]=="JZR"){
+      if (state["registers"]["R"]==0x0){
+        state["ppointer"]=memaddr.indexOf(inst[1].slice(-1))-1
+      }
+    }
+  }
+
   checkst()
 }
 
