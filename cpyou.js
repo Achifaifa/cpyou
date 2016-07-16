@@ -289,6 +289,12 @@ function modprog(inst){
       }
       $("#progstatus").text("Idle")
     }
+    else if (currentpr=="Run Single"){
+      tbe=state["program"][inst]
+      if (tbe!=undefined){
+        runinst(tbe, 1)
+      }
+    }
     else if (currentpr=="Copy"){
       $("#progstatus").text("Copy "+inst)
     }
