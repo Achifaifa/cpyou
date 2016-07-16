@@ -37,6 +37,22 @@ levels=[
   "instruction": [],
   "condition": "state['memory']['M0xF']==0x0106c210"
   
+},
+{ "level": "03",
+  "goal": "Multiply M0x0 by 10 and put the result in M0xF",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {"M0x0": 0x1009F6AB},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0xb06d9959"
 }]
 
 // Initial state
