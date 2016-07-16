@@ -52,7 +52,7 @@ levels=[
   "stack": [],
   "memory": {"M0x0": 0x1009F6AB},
   "instruction": [],
-  "condition": "state['memory']['M0xF']==0xb06d9959"
+  "condition": "state['memory']['M0xF']==0xa063a2ae"
 }]
 
 // Initial state
@@ -422,7 +422,7 @@ function parseinst(){
 //
 // General instructions
 //
-// [X] MOV X Y -> Moves the contents of X to Y
+// [X] MOV X Y -> Moves the contents of X to Y [A, B, R or memory]
 // [X] ADD     -> Adds A and B and puts the result in R
 // [X] SUB     -> Subtracts A and B and puts the result in R
 // [X] PUT X   -> Puts a value from X (A, B or R) in the stack
@@ -456,10 +456,10 @@ function runinst(inst, source){
   if (inst.length==0) {return}
 
   else if (inst[0]=="MOV") {
-    if (["A", "B", "R", "C"].indexOf(inst[1])==-1 && inst[1].indexOf("M0x")==-1) {return}
+    if (["A", "B", "R"].indexOf(inst[1])==-1 && inst[1].indexOf("M0x")==-1) {return}
     if (["A", "B", "R"].indexOf(inst[2])==-1 && inst[2].indexOf("M0x")==-1) {return}
     from="memory"
-    if (["A", "B", "R", "C"].indexOf(inst[1])!=-1) {
+    if (["A", "B", "R"].indexOf(inst[1])!=-1) {
       from="registers"
     }
     to="memory"
