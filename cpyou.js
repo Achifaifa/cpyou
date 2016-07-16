@@ -347,7 +347,10 @@ function addhist(){
 // Checks the status for problems
 function checkst(){
 
-  if (state["stack"].length>16) {alert("Stack Overflow!\nGame over")}
+  if (state["stack"].length>16) {
+    alert("Stack Overflow!\nGame over");
+    running=0
+  }
   else if (state["stack"].length>14) {state["flags"][7]=1}
   else if (state["stack"].length<=14) {state["flags"][7]=0}
 
@@ -355,6 +358,7 @@ function checkst(){
   update(0)
 
   if (eval(state["condition"])) {
+    running=0
     alert("That's right!")
   }
 }
@@ -418,7 +422,7 @@ function parseinst(){
 // [X] JNG P   -> Jump to instruction P if the negative flag is 1
 // [X] JGE P   -> Jump to instruction P if the comparison was greater or equal
 // [X] JLE P   -> Jump to instruction P if the comparison was less
-// [X] JZR P   -> Jump to instruction P if R is 0
+// [X] JZR P   -> Jump to instruction P if C is 0
 // [X] INC     -> Increase counter by 1
 // [X] DEC     -> Decrease counter by 1
 // [X] SET N   -> Sets the counter to N
@@ -447,7 +451,7 @@ function runinst(inst, source){
       to="registers"
     }
 
-    state[to][inst[2]]=jQuery.extend(true, [], state[from][inst[1]]);
+    state[to][inst[2]]=state[from][inst[1]]
   }
 
   else if (inst[0]=="SHR") {
@@ -534,7 +538,7 @@ function runinst(inst, source){
     }
 
     if (inst[0]=="JZR"){
-      if (state["registers"]["R"]==0x0){
+      if (state["registers"]["C"]==0x0){
         state["ppointer"]=memaddr.indexOf(inst[1].slice(-1))-1
       }
     }
@@ -554,8 +558,7 @@ function runinst(inst, source){
     }
 
     else if (inst[0]=="SET" && inst.length==2 && !isNaN(parseInt(inst[1],16))){
-      console.log("in")
-      state["registers"]["C"]=parseInt(inst[1], 16).toString(16)
+      state["registers"]["C"]=parseInt(inst[1], 16)
     }
   }
   
