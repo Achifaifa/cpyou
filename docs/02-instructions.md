@@ -2,6 +2,8 @@
 
 The game has several instructions, grouped in the `instructions` area. 
 
+![](./img/instructions.png)
+
 Those located in the top part are general instructions that can be run directly from the instruction slot, and those in the bottom part can only be executed from a running program.
 
 The names of the instructions are mnemonics for what they actually do, so after a while you'll be familiar with the nomenclature.
@@ -33,9 +35,9 @@ X must be A or B
 
 #### CMP  
 
-Compares A and B
-If A is greater, the CMP flag is set to 1
-If A is less or equal, the CMP flag is set to 0
+Compares A and B  
+If A is greater, the CMP flag is set to 1  
+If A is less or equal, the CMP flag is set to 0  
 The NEQ flag shows if the two numbers are equal (0) or not (1)
 
 #### SHL X
@@ -87,5 +89,5 @@ Decrease counter register C by 1
 
 #### SET N
 
-Sets the counter register C to N
+Sets the counter register C to N  
 N must be a valid hexadecimal number

@@ -120,5 +120,5 @@ The buttons in the bottom of this area allow you to run, stop and move around th
 * `CPY` (CoPY) will copy the instruction in a slot to another slot.
 * `RMI` (ReMove Instruction) will remove the instruction in a given slot
 * `DEL` (DELete) will clear the entire program. *Everything* will be erased (You'll need to press it twice to confirm you really want to do this)
-* `v` and `^` and  will increase or decrease the Instruction Pointer by 1
+* `v` and `^` will increase or decrease the Instruction Pointer by 1
 * `vv` and `^^` will move the Instruction Pointer to the first or last instruction
