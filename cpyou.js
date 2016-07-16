@@ -2,6 +2,7 @@ $( document ).ready(function() {
 
 memaddr=["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
 helpon=0;
+running=0;
 levels=[
 { "level": "01",
   "goal": "Add the numbers in memory, put the result in M0xF",
@@ -84,6 +85,9 @@ $("button, input[value='JNG']").click(function(){ addinst("JNG") });
 $("button, input[value='JGE']").click(function(){ addinst("JGE") });
 $("button, input[value='JLE']").click(function(){ addinst("JLE") });
 $("button, input[value='JZR']").click(function(){ addinst("JZR") });
+$("button, input[value='INC']").click(function(){ addinst("INC") });
+$("button, input[value='DEC']").click(function(){ addinst("DEC") });
+$("button, input[value='SET']").click(function(){ addinst("SET") });
 // History button functions
 $("button, input[value='0']").click(function(){ rptinst(0) });
 $("button, input[value='1']").click(function(){ rptinst(1) });
@@ -96,6 +100,7 @@ $("button, input[value='RSI']").click(function(){ modprog("RSI") });
 $("button, input[value='STP']").click(function(){ modprog("STP") });
 $("button, input[value='CPY']").click(function(){ modprog("CPY") });
 $("button, input[value='EXE']").click(function(){ modprog("EXE") });
+$("button, input[value='INT']").click(function(){ running=0 });
 $("button, input[value='RMI']").click(function(){ modprog("RMI") });
 $("button, input[value='DEL']").click(function(){ modprog("DEL") });
 $("button, input[value='v']").click(function(){ modprog("v") });
@@ -182,7 +187,7 @@ function ppointerinc(n){
   if (n==-1 && p>0){state["ppointer"]-=1}
 }
 
-// Runs the n next instructions in the program
+// Runs the next instructions in the program
 // Should be called with a setTimeout of 1s
 function rsi(n){
 
@@ -194,7 +199,9 @@ function rsi(n){
   }
   ppointerinc(1)
   update()
-  setTimeout(rsi, 1000, n-1)
+  if (running==0 || state["ppointer"]==15){next=0}
+  else {next=1}
+  setTimeout(rsi, 1000, next)
 }
 
 // Processes the program modification buttons
@@ -253,7 +260,8 @@ function modprog(inst){
   }
   else if (inst=="EXE"){
     $("#progstatus").text("Running")
-    setTimeout(rsi, 1000, 15-state["ppointer"])
+    running=1
+    setTimeout(rsi, 1000, running)
     $("#progstatus").text("Idle")
   }
   
@@ -512,6 +520,27 @@ function runinst(inst, source){
     }
   }
 
+  // Program counter instructions
+  else if (source==1){
+
+    if (inst.length==1){
+      if (inst[0]=="INC"){
+
+        state["registers"]["C"]+=0x1
+      }
+
+      else if (inst[0]=="DEC"){
+
+        state["registers"]["C"]-=0x1
+      }
+    }
+
+    else if (inst[0]=="SET" && inst.length==2){
+
+
+    }
+  }
+  
   checkst()
 }
 
