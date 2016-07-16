@@ -87,7 +87,13 @@ $("button, input[value='JLE']").click(function(){ addinst("JLE") });
 $("button, input[value='JZR']").click(function(){ addinst("JZR") });
 $("button, input[value='INC']").click(function(){ addinst("INC") });
 $("button, input[value='DEC']").click(function(){ addinst("DEC") });
-$("button, input[value='SET']").click(function(){ addinst("SET") });
+$("button, input[value='SET']").click(function(){ 
+                        cval=parseInt($('#inputtxt').val(), 16)
+                        if (!isNaN(cval)){
+                          addinst("SET"); 
+                          addinst(cval.toString(16));
+                        }
+                      });
 // History button functions
 $("button, input[value='0']").click(function(){ rptinst(0) });
 $("button, input[value='1']").click(function(){ rptinst(1) });
@@ -305,7 +311,9 @@ function modprog(inst){
 function addinst(inst){
 
   if (state["instruction"][0]!=undefined){
-    if (state["instruction"][0].slice(0,3)=="P0x"){state["instruction"]==[]}
+    if (state["instruction"][0].slice(0,3)=="P0x") {
+      state["instruction"]=[]
+    }
   }
   if (state["instruction"].length<3) {state["instruction"].push(inst)}
 }
@@ -350,7 +358,7 @@ function parseinst(){
 
   inst=state["instruction"]
   
-  if (["ADD","SUB","CMP","NOP"].indexOf(inst[0])!=-1 && inst.length!=1){
+  if (["ADD","SUB","CMP","NOP", "INC", "DEC"].indexOf(inst[0])!=-1 && inst.length!=1){
     return 0
   }
   if (inst[0]=="PUT" && (["A", "B", "R"].indexOf(inst[1])==-1 || inst.length!=2)){
@@ -372,6 +380,12 @@ function parseinst(){
     if (["A", "B", "R"].indexOf(inst[2])==-1 && inst[2].indexOf("M0x")==-1) {
       return 0
     }
+  }
+  if (["GTO", "JNG", "JGE", "JLE", "JZR"].indexOf(inst[0])!=-1 && (inst.length!=2 || inst[1].slice(0,3)!="P0x")) {
+    return 0
+  }
+  if (inst[0]=="SET" && (inst.length!=2 || isNaN(parseInt(inst[1],16))) ){
+    return 0
   }
 
   return 1
@@ -399,9 +413,9 @@ function parseinst(){
 // [X] JGE P   -> Jump to instruction P if the comparison was greater or equal
 // [X] JLE P   -> Jump to instruction P if the comparison was less
 // [X] JZR P   -> Jump to instruction P if R is 0
-// [ ] INC     -> Increase counter by 1
-// [ ] DEC     -> Decrease counter by 1
-// [ ] SET N   -> Sets the counter to N
+// [X] INC     -> Increase counter by 1
+// [X] DEC     -> Decrease counter by 1
+// [X] SET N   -> Sets the counter to N
 //
 // Flags:
 //
@@ -483,7 +497,7 @@ function runinst(inst, source){
     if (inst.length!=1) {return}
   }
 
-  if (source==0 && ["GTO", "JNG", "JGE", "JLE", "JZR"].indexOf(inst[0])==-1) {
+  if (source==0 && ["GTO", "JNG", "JGE", "JLE", "JZR", "INC", "DEC", "SET"].indexOf(inst[0])==-1) {
     addhist();
     clrinst();
   }
@@ -525,19 +539,17 @@ function runinst(inst, source){
 
     if (inst.length==1){
       if (inst[0]=="INC"){
-
         state["registers"]["C"]+=0x1
       }
 
       else if (inst[0]=="DEC"){
-
         state["registers"]["C"]-=0x1
       }
     }
 
-    else if (inst[0]=="SET" && inst.length==2){
-
-
+    else if (inst[0]=="SET" && inst.length==2 && !isNaN(parseInt(inst[1],16))){
+      console.log("in")
+      state["registers"]["C"]=parseInt(inst[1], 16).toString(16)
     }
   }
   
