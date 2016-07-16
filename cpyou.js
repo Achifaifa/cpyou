@@ -329,6 +329,9 @@ function checkst(){
   else if (state["stack"].length>14) {state["flags"][7]=1}
   else if (state["stack"].length<=14) {state["flags"][7]=0}
 
+  // Update again to show the correct final status before finishing
+  update(0)
+
   if (eval(state["condition"])) {
     alert("That's right!")
   }
@@ -383,11 +386,14 @@ function parseinst(){
 //
 // To-memory only instructions
 //
-// [ ] GTO P   -> Goto instruction P
-// [ ] JNG P   -> Jump to instruction P if the negative flag is 1
-// [ ] JGE P   -> Jump to instruction P if the comparison was greater or equal
-// [ ] JLE P   -> Jump to instruction P if the comparison was less
-// [ ] JZR P   -> Jump to instruction P if R is 0
+// [X] GTO P   -> Goto instruction P
+// [X] JNG P   -> Jump to instruction P if the negative flag is 1
+// [X] JGE P   -> Jump to instruction P if the comparison was greater or equal
+// [X] JLE P   -> Jump to instruction P if the comparison was less
+// [X] JZR P   -> Jump to instruction P if R is 0
+// [ ] INC     -> Increase counter by 1
+// [ ] DEC     -> Decrease counter by 1
+// [ ] SET N   -> Sets the counter to N
 //
 // Flags:
 //
@@ -413,7 +419,7 @@ function runinst(inst, source){
       to="registers"
     }
 
-    state[to][inst[2]]=state[from][inst[1]]
+    state[to][inst[2]]=jQuery.extend(true, [], state[from][inst[1]]);
   }
 
   else if (inst[0]=="SHR") {
@@ -510,7 +516,7 @@ function runinst(inst, source){
 }
 
 // Update the screen with the new state
-function update(){
+function update(check){
 
   $("#registers #regdata").eq(0).text( ("0000000"+state["registers"]["A"].toString(16)).slice(-8) )
   $("#registers #regdata").eq(1).text( ("0000000"+state["registers"]["B"].toString(16)).slice(-8) )
@@ -576,16 +582,18 @@ function update(){
   $("#stack #stacklen").text(state["stack"].length)
 
   // Delete unnecessary program pointers
-  if (state["instruction"][0]!=undefined){
-    if (state["instruction"].slice(-1)[0].slice(0,3)=="P0x"){
-      state["instruction"]=state["instruction"].slice(0,-1)
-    }
-  }
+  // if (state["instruction"][0]!=undefined){
+  //   if (state["instruction"].slice(-1)[0].slice(0,3)=="P0x"){
+  //     state["instruction"]=state["instruction"].slice(0,-1)
+  //   }
+  // }
 
-  checkst()
+  if (check==1){
+    checkst()
+  }
 }
 
 // Initial update of the screen
-update();
+update(1);
 
 });//end of ready
