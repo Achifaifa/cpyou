@@ -53,6 +53,22 @@ levels=[
   "memory": {"M0x0": 0x1009F6AB},
   "instruction": [],
   "condition": "state['memory']['M0xF']==0xa063a2ae"
+},
+{ "level": "04",
+  "goal": "Divide M0x0 and M0x1",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {"M0x0": 0x1009EEAB, "M0x1": 0x00EE2400},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x00000011"
 }]
 
 // Initial state
