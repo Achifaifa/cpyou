@@ -432,7 +432,7 @@ function parseinst(){
     if (inst.length!=3) {
       return 0
     } 
-    if (["A", "B", "R"].indexOf(inst[1])==-1 && inst[1].indexOf("M0x")==-1) {
+    if (["A", "B", "R", "C"].indexOf(inst[1])==-1 && inst[1].indexOf("M0x")==-1) {
       return 0
     }
     if (["A", "B", "R", "C"].indexOf(inst[2])==-1 && inst[2].indexOf("M0x")==-1) {
@@ -488,10 +488,10 @@ function runinst(inst, source){
   if (inst.length==0) {return}
 
   else if (inst[0]=="MOV") {
-    if (["A", "B", "R"].indexOf(inst[1])==-1 && inst[1].indexOf("M0x")==-1) {return}
+    if (["A", "B", "R", "C"].indexOf(inst[1])==-1 && inst[1].indexOf("M0x")==-1) {return}
     if (["A", "B", "R", "C"].indexOf(inst[2])==-1 && inst[2].indexOf("M0x")==-1) {return}
     from="memory"
-    if (["A", "B", "R"].indexOf(inst[1])!=-1) {
+    if (["A", "B", "R", "C"].indexOf(inst[1])!=-1) {
       from="registers"
     }
     to="memory"
