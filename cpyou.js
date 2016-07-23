@@ -667,7 +667,8 @@ function update(check){
   })
 
   // Highlight current instruction
-  $("#program #programdata").eq(state["ppointer"]).css("color", "#00bb00")
+  temptxt=$("#program #programdata").eq(state["ppointer"]).text()
+  $("#program #programdata").eq(state["ppointer"]).text(">"+temptxt)
 
   // Update level info
   $("#levelno").text(state["level"])
