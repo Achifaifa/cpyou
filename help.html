@@ -13,6 +13,28 @@ After the page has loaded, you can play around with the processor and instructio
 
 Once a level has been successfully completed, a popup will be displayed to notify the player. You can then select another level or try to improve the program to use as few instructions as possible.<br/><br/>
 
+<h2>Tips and tricks</h2>
+
+While you don't need to be an assembly expert to play this, you'll need to learn some things before using it. Here are some general tips and tricks, and things you'll probably find weird if it's your first time.
+
+<li> All the data you see his in hexadecimal (Base 16)<br/>
+
+Everything in the memory, registers, etc is in hexadecimal format. Hex is base16, and just like base10 using the symbols 0-9, it uses 16 symbols: numbers 0-9, and letters A-F. So, for example, 9-10-11 in hexadecimal would be 9-A-B. If you are wondering why, you can check this <a href="https://en.wikipedia.org/wiki/Hexadecimal#Binary_conversion">link</a>
+
+<li> You only have 2 slots to do everything<br/>
+
+If you have programmed with any higher level programming language such as python, you'll be used to working with as many variables as you want. In assembly you work with a limited number of slots you can put your information in. In this case, you have two registers, A and B, that you must use to process the information and complete the level.
+So if you are doing something and need to add two numbers, you'll need to save your progress somewhere else.
+
+<li> You have a stack<br/>
+
+Again, if you have programmed with something like python, chances are you haven't bothered using stacks. But if you want to complete some of the levels, you'll have to get used to it. More info further in this document.
+
+<li> Instructions have weird names<br/>
+
+If you want to, say, add A and B, you do A+B, right? Not here. Most of the time the instructions assume you've already placed what you want to process correctly in the registers, and will use whatever is in them as "arguments". To follow with the adding example, you'll need to put A in one register and B in another, and then call `ADD`, which will add whatever is in A and B together and will put it in R (Regardless of what you had previously stored there)  
+The instructions also have weird 3 letter names. For obvious reasons (I don't really know anything about assembly and I'm just making the names up) they are not the exact same names you may find in actual assembly, but they get close. They act as mnemonic rules for what the instructions do. So, for example, `ADD` stands for 'add' (duh), `CMP` stands for 'compare', and so on.
+
 <h2>Registers, flags and data storage</h2>
 
 The data is provided in the first positions of the memory banks (Equivalent to RAM). The solution is usually expected in the last position of these banks. The <b>memory banks</b> are data storage positions you can access at any time and any position. You can use the MOV instruction to move things to or from the memory.<br/><br/>
@@ -44,6 +66,8 @@ Sign | Compare | Not Equal | X | X | X | X | Stack Full warning</pre>
 <h2>Instructions</h2>
 
 There are two types of instructions in CPYou. General instructions can be run independently (For example, to solve the easier levels), and To-memory only instructions can only be run by placing them in program memory and running the program. To-memory only instructions include jumps, loops and gotos that do not make sense as standalone instructions.
+
+The last 3 general instructions you have ran are stored in the history (Middle bottom of the work area). You can click one of those instructions any time to bring it up again, so you don't have to compose it all over again.
 
 This section contains all the instructions in CPYou and how they affect the state of the processor.
 
