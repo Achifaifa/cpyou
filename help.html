@@ -1,0 +1,117 @@
+<meta charset="UTF-8"> 
+<title>CPYou --help</title>
+<link rel=stylesheet href="./styles.css" type="text/css">
+<body bgcolor="#000000"><div id="help">
+
+<h2>About CPYou</h2>
+
+CPYou is a game that simulates a fictional processor and uses assembly language to provide and solve algorithmic challenges. Every level has a different goal. The overall objective of the game is to solve the different challenges using only the instructions and registers provided. <br/>
+
+<h2>How to play</h2>
+
+After the page has loaded, you can play around with the processor and instructions or select one of the levels in the bottom of the page and try to solve it. Once a level has been clicked, all the registers will be updated (You will lost what you have done until that moment) and the goal will be displayed in the top of the screen.<br/><br/>
+
+Once a level has been successfully completed, a popup will be displayed to notify the player. You can then select another level or try to improve the program to use as few instructions as possible.<br/><br/>
+
+<h2>Registers, flags and data storage</h2>
+
+The data is provided in the first positions of the memory banks (Equivalent to RAM). The solution is usually expected in the last position of these banks. The <b>memory banks</b> are data storage positions you can access at any time and any position. You can use the MOV instruction to move things to or from the memory.<br/><br/>
+
+To the right of the memory banks you have the <b>stack</b>. The stack is a special data structure that allows data to be stored on top of each other. With the PUT instruction you can put data on top of the stack, and with the POP instruction you can get whatever is on top of the stack. You can't access anything on the stack that is not on the top, and you can't store more than 16 words in the stack. When the stack is full, the STW (STack Warning) flag will be 1.  <br/><br/>
+
+The <b>program memory</b> is on the left of the screen. It's similar to the memory banks, except it can only store program instructions. You can add an instruction by composing it in the middle area (See 'instructions') and then using the '<--' button and selecting the position in which you want to store the instruction.<br/><br/>
+
+The middle area contains the main registers and the flags. There are two general purpose registers, a counter and a result register. <br/><br/>
+
+<b>A</b> and <b>B</b> are general purpose registers. You can put any data in here to be processed by the instructions, or move the data in them to memory or the stack. <br/><br/>
+
+<b>C</b> is a counter register. You can set this with a number and increase (With the INC instruction) or decrease (DEC) it. This is useful to program loops. <br/><br/>
+
+<b>R</b> is the result register. The results of addition, subtraction and other operations will be automatically moved here. <br/><br/>
+
+<b>Flags</b> are single bits in a special flag register that show the current state of the processor. 
+<pre>
+0      1         2           3   4   5   6   7                 
+Sign | Compare | Not Equal | X | X | X | X | Stack Full warning</pre>
+
+<ul>
+  <li> The <b>Sign (NEG)</b> flag activates when the result of a subtraction is less than zero. It stays on (or off) until a new subtraction is executed.
+  <li> The <b>Compare (CMP)</b> flag activates when the data in register A is greater than the data in register B when a compare instruction is executed. Like the sign flag, it preserves the state until a new compare instruction is run.
+  <li> The <b>Not Equal (NEQ)</b> flag activates when the data in A and B are not equal when a compare instruction is run. Again, it only updates when compare instructions are used.
+  <li> Positions 3 to 6 are not currently used
+  <li> The <b>Stack Full Warning (STW)</b> flag activates when the stack is full (16/16 slots used), and deactivates when less than 16 slots are used.
+
+<h2>Instructions</h2>
+
+There are two types of instructions in CPYou. General instructions can be run independently (For example, to solve the easier levels), and To-memory only instructions can only be run by placing them in program memory and running the program. To-memory only instructions include jumps, loops and gotos that do not make sense as standalone instructions.
+
+This section contains all the instructions in CPYou and how they affect the state of the processor.
+
+<h3>General instructions</h3>
+
+<li> MOV X Y<br/>
+  Moves the contents of X [A, B, C, R or memory] to Y [A, B, R or memory]
+<li> ADD<br/>
+  Adds A and B and puts the result in R
+<li> SUB<br/>
+  Subtracts A and B and puts the result in R. If the result is negative it sets the NEG flag to 1.
+<li> PUT X<br/>
+  Puts a value from X [A, B or R] in the stack
+<li> POP X<br/>
+  Gets a value from the stack and puts it in X [Puts it in A or B]
+<li> CMP<br/>
+  Compares A and B. <br/>
+  If A>B then the CMP flag is 1, if A<=B CMP is 0. <br/>
+  If A!=B, NEQ flag is 1, if A==B NEQ is 0.<br/>
+<li> SHL X<br/>
+  Shifts bits to the left in X [A or B]
+<li> SHR X<br/>
+  Shifts bits to the right in X [A or B]
+<li> NOP<br/>
+  Does nothing
+
+<h3>To-memory only instructions</h3>
+
+<li> GTO P<br/>
+  Jumps to instruction P and continues the execution of the program from there.
+<li> JNG P<br/>
+  Jumps to instruction P if the negative flag is 1
+<li> JGE P<br/>
+  Jumps to instruction P if the comparison was greater or equal
+<li> JLE P<br/>
+  Jumps to instruction P if the comparison was less
+<li> JZR P<br/>
+  Jumps to instruction P if the counter register C is 0
+<li> INC  <br/>
+  Increases counter by 1
+<li> DEC  <br/>
+  Decreases counter by 1
+<li> SET N<br/>
+  Sets the counter to N
+
+<h2>Program management</h2>
+
+Once the program memory has some instructions, you can try some or all of them by using the buttons under the program memory block. 
+
+
+<li> RSI <br/>
+  Select an instruction and run it without advancing the instruction pointer.
+<li> STP <br/>
+  Runs a step (Run instruction, advance pointer)
+<li> EXE <br/>
+  Runs entire program. The instruction pointer will keep being modified until it reaches the last position.
+<li> CPY <br/>
+  Copies an instruction to another slot
+<li> RMI <br/>
+  Removes instruction
+<li> DEL <br/>
+  Deletes entire program (Requires confirmation)
+<li> v   <br/>
+  Increases pointer
+<li> vv  <br/>
+  Moves pointer to the last instruction
+<li> ^   <br/>
+  Decreases pointer
+<li> ^^  <br/>
+  Resets pointer
+

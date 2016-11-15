@@ -198,7 +198,7 @@ $("button, input[value='P0xF']").click(function(){ modprog("P0xF"); addinst("P0x
 // Add another one for updating the screen when a button is pressed
 $("button, input").on("click", update);
 // Detect when the help image is pressed to close it
-$("#everything #help").on("click", cyclehelp);
+$("#everything #help").on("click", gotohelp);
 
 // Intercept links
 $('body').delegate('a', 'click', function(event) {
@@ -207,7 +207,7 @@ $('body').delegate('a', 'click', function(event) {
 
   // Show/hide help
   if (lvl=="lp"){
-    cyclehelp();
+    gotohelp();
   }
 
   // Process level links
@@ -217,10 +217,10 @@ $('body').delegate('a', 'click', function(event) {
 });
 
 // Show or hide the help screen by modifying the div height
-function cyclehelp(){
+function gotohelp(){
 
-  helpon=(helpon+1)%2;
-  jQuery('#help').css('height', 630*helpon);
+  var win = window.open('./help.html', '_blank');
+  win.focus();
 }
 
 // Load a new level
