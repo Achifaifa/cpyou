@@ -4,7 +4,7 @@ memaddr=["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "
 helpon=0;
 running=0;
 levels=[
-{ "level": "01",
+{ "level": "0",
   "goal": "Add the numbers in memory, put the result in M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
@@ -19,9 +19,8 @@ levels=[
   "memory": {"M0x0": 0x1009F6AB, "M0x1": 0x55610FFF, "M0x2": 0x0055ABBF},
   "instruction": [],
   "condition": "state['memory']['M0xF']==0x65c0b269"
-  
 },
-{ "level": "02",
+{ "level": "1",
   "goal": "Calculate M0x0 % M0x1 and put the result in M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
@@ -36,9 +35,8 @@ levels=[
   "memory": {"M0x0": 0x02107010, "M0x1": 0x0109AE00},
   "instruction": [],
   "condition": "state['memory']['M0xF']==0x0106c210"
-  
 },
-{ "level": "03",
+{ "level": "2",
   "goal": "Multiply M0x0 by 10 and put the result in M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
@@ -54,7 +52,7 @@ levels=[
   "instruction": [],
   "condition": "state['memory']['M0xF']==0xa063a2ae"
 },
-{ "level": "04",
+{ "level": "3",
   "goal": "Divide M0x0 and M0x1, put the result in M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
@@ -70,7 +68,7 @@ levels=[
   "instruction": [],
   "condition": "state['memory']['M0xF']==0x00000011"
 },
-{ "level": "05",
+{ "level": "4",
   "goal": "Calculate (M0x0 + M0x1) x M0x2; move the result to M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
@@ -85,7 +83,188 @@ levels=[
   "memory": {"M0x0": 0x0009EEAB, "M0x1": 0x0009F0AE, "M0x2": 0x0000000F},
   "instruction": [],
   "condition": "state['memory']['M0xF']==0x012a1637"
-}]
+},
+{ "level": "5",
+  "goal": "Calculate the sum of the first 100 natural numbers; Move result to M0xF",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x000013BA"
+},
+{ "level": "6",
+  "goal": "Compare all numbers in memory and place the largest in M0xF",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {"M0x0": 0x000AAAAA, "M0x1": 0x000E9901, "M0x2": 0x00000F01, "M0x3": 0x00012376, "M0x4": 0x0009AEAB},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x000E9901"
+},
+{ "level": "7",
+  "goal": "Count how many 0x0000FFFF there are in memory; Put the result in M0xF",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {"M0x0": 0x0000FFFF, "M0x1": 0x000E9901, "M0x2": 0x00000F01, "M0x3": 0x00012376, "M0x4": 0x0009AEAB, "M0x5": 0x0000FFFF, "M0x6": 0x0000FFFF, "M0x7": 0x00061C12, "M0x8": 0x0000D500, "M0x9": 0x0000FFFF, "M0xA": 0x00001234, "M0xB": 0x0509F990, "M0xC": 0x0000FFFF},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x00000005"
+},
+{ "level": "8",
+  "goal": "Calculate the sum of the first 10 even numbers; Move result to M0xF",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x0000006E"
+},
+{ "level": "9",
+  "goal": "Rearrange the numbers in memory to descending value",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {"M0x0": 0x00000001, "M0x1": 0x00000002, "M0x2": 0x00000003, "M0x3": 0x00000004, "M0x4": 0x00000005},
+  "instruction": [],
+  "condition": "state['memory']['M0x0']==0x00000005 && state['memory']['M0x1']==0x00000004 && state['memory']['M0x2']==0x00000003 && state['memory']['M0x3']==0x00000002 && state['memory']['M0x4']==0x00000002 && state['memory']['M0x5']==0x00000001"
+},
+{ "level": "A",
+  "goal": "Add the numbers in even memory positions; Move result to M0xF",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {"M0x0": 0x00007701, "M0x1": 0x000E9901, "M0x2": 0x00000F01, "M0x3": 0x00012376, "M0x4": 0x0009AEAB, "M0x5": 0x0000FABF, "M0x6": 0x00088911, "M0x7": 0x00061C12, "M0x8": 0x0000D500, "M0x9": 0x0F090102, "M0xA": 0x00001234, "M0xB": 0x0509F990, "M0xC": 0x00055D1A},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x0019020C"
+},
+{ "level": "B",
+  "goal": "Calculate ((M0x0*M0x1)/M0x2)+M0x3; move result to M0xF",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {"M0x0": 0x00002376,"M0x1": 0x0000FABF, "M0x2": 0x00061C12, "M0x3": 0x0000D500},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x0000DAB0"
+},
+{ "level": "C",
+  "goal": "Add and substract the contents of memory (M0x0+M0x1-M0x2+M0x3,,,); move result to M0xF",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {"M0x0": 0x00007701, "M0x1": 0x000E9901, "M0x2": 0x00000F01, "M0x3": 0x00012376, "M0x4": 0x0009AEAB, "M0x5": 0x0000FABF, "M0x6": 0x00088911, "M0x7": 0x00061C12, "M0x8": 0x0000D500, "M0x9": 0x0F090102, "M0xA": 0x00001234, "M0xB": 0x0509F990, "M0xC": 0x00055D1A},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x0F11B9D0"
+},
+{ "level": "D",
+  "goal": "Calculate (M0x0/(M0x1+M0x2))+M0x3; Move result to M0xF",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {"M0x0": 0x00012376, "M0x1": 0x0009AEAB, "M0x2": 0x0000FABF, "M0x3": 0x0410FF88},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x0410FF88"
+},
+{ "level": "E",
+  "goal": "Add all numbers in memory, counting how many times the addition overflows; Move count to M0xF",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {"M0x0": 0x0F117701, "M0x1": 0x100E9901, "M0x2": 0x53350F01, "M0x3": 0x00012376, "M0x4": 0x0009AEAB, "M0x5": 0x000000BF, "M0x6": 0x00002111, "M0x7": 0x00000012, "M0x8": 0xFF40D500, "M0x9": 0x0F090102, "M0xA": 0xEDC31234, "M0xB": 0x0509F990, "M0xC": 0x00055D1A},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x00000002"
+},
+// Making levels sucks and honestly what the fuck is the point, 
+// no one is going to play this game past level 3. If you are 
+// reading this feel free so send me a new level, I'm all out of 
+// ideas.
+{ "level": "F",
+  "goal": "MOV 0x0000000F to pay respects,", 
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x0000000F"
+},
+]
 
 // Initial state
 initialstate={ 
@@ -203,16 +382,20 @@ $("#everything #help").on("click", gotohelp);
 // Intercept links
 $('body').delegate('a', 'click', function(event) {
   event.preventDefault();
-  lvl=event.currentTarget.href.slice(-2)
+  var nav=event.currentTarget.href.split("/").pop()
 
-  // Show/hide help
-  if (lvl=="lp"){
-    gotohelp();
+  var clvl=parseInt(state.level,16)
+  if (nav=="prevlv" && state.level!="0")
+  {
+    loadlevel((clvl-1).toString(16))
   }
-
-  // Process level links
-  else {
-    loadlevel(parseInt(lvl))
+  else if (nav=="nextlv" && state.level!="F")
+  {
+    loadlevel((clvl+1).toString(16))
+  }
+  else
+  {
+    loadlevel(nav)
   }
 });
 
@@ -226,7 +409,7 @@ function gotohelp(){
 // Load a new level
 function loadlevel(n){
 
-  nlvl=levels[n-1]
+  nlvl=levels[parseInt(n,16)]
   if (nlvl!=undefined) {
     state=jQuery.extend(true, {}, nlvl)
     update()
@@ -341,6 +524,7 @@ function modprog(inst){
       tbe=state["program"][inst]
       if (tbe!=undefined){
         runinst(tbe, 1)
+        $("#progstatus").text("Idle")
       }
     }
     else if (currentpr=="Copy"){
@@ -498,7 +682,6 @@ function runinst(inst, source){
     if (["A", "B", "R", "C"].indexOf(inst[2])!=-1) {
       to="registers"
     }
-
     state[to][inst[2]]=state[from][inst[1]]
   }
 
@@ -640,7 +823,7 @@ function update(check){
     $("#registers #flagdata").eq(i).text(state["flags"][i])
 
     // Reset all program
-    $("#program #programdata").eq(i).text("--")
+    $("#program #programdata").eq(i).text("NOP")
   }
 
   memaddr.forEach(function(i){
@@ -657,7 +840,7 @@ function update(check){
     if (val!=undefined){
       $("#program #programdata").eq(lpoint).text( val.join(" ") )
     }
-    $("#program #programdata").eq(lpoint).css("color", "#000000")
+    $("#program #programdata").eq(lpoint).css("color", "white")
 
     // Update memory from dict
     val=state["memory"]["M0x"+i]
@@ -668,7 +851,8 @@ function update(check){
 
   // Highlight current instruction
   temptxt=$("#program #programdata").eq(state["ppointer"]).text()
-  $("#program #programdata").eq(state["ppointer"]).text(">"+temptxt)
+  //$("#program #programdata").eq(state["ppointer"]).text(">"+temptxt)
+  $("#program #programdata").eq(state["ppointer"]).css("color","#999999")
 
   // Update level info
   $("#levelno").text(state["level"])
@@ -693,6 +877,5 @@ function update(check){
 }
 
 // Initial update of the screen
-update(1);
-
+loadlevel(0);
 });//end of ready

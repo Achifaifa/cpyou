@@ -1,52 +1,55 @@
 <meta charset="UTF-8"> 
-<link rel=stylesheet href="./styles.css" type="text/css">
+<link rel=stylesheet href="./res/styles.css" type="text/css">
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="./cpyou.js"></script>
+<script src="./res/cpyou.js"></script>
 <title>CPYou</title>
 
-<body bgcolor="#000000">
+<body bgcolor="#020202">
 <div id="everything">
-  <div id="help"></div>
-  <b>Level <div id="levelno"></div></b> (<a href="help">help</a>)<br/>
-  Goal: <div id="goal"></div> <br/>
+  <a href="prevlv">&lt;</a> <b>Level <div id="levelno"></div></b> <a href="nextlv">&gt;</a><br/>
+  <div id="goal"></div> <br/>
 
   <div id="program">
 
     <center><b>Program</b></center>
-    <input type="submit" value="P0x0"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0x1"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0x2"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0x3"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0x4"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0x5"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0x6"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0x7"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0x8"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0x9"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0xA"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0xB"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0xC"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0xD"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0xE"> <div id="programdata">NOP</div><br/>
-    <input type="submit" value="P0xF"> <div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0x0">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0x1">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0x2">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0x3">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0x4">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0x5">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0x6">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0x7">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0x8">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0x9">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0xA">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0xB">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0xC">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0xD">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0xE">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
+    <input type="submit" value="P0xF">&nbsp;&nbsp;&nbsp;<div id="programdata">NOP</div><br/>
     <br/>
-    <center><div id="progstatus">Idle</div></center>
-    <br/>
-    <input type="submit" value="RSI">
-    <input type="submit" value="STP"><br/>
-    <input type="submit" value="EXE">
-    <input type="submit" value="INT"><br/>
-    <input type="submit" value="CPY">
-    <input type="submit" value="RMI">
-    <input type="submit" value="DEL"><br/>
-    <input type="submit" value="^^"><input type="submit" value="^">
-    <input type="submit" value="v"><input type="submit" value="vv">
+    <center>
+      <b>Status</b><br/>
+      <div id="progstatus">Idle</div>
+      <br/>
+      <input type="submit" value="RSI" title="Run Single Instruction">
+      <input type="submit" value="STP" title="STeP. Run single instruction and advance pointer"><br/>
+      <input type="submit" value="EXE" title="EXEcute. Run all instructions in program memory starting at the current instruction pointer">
+      <input type="submit" value="INT" title="INTerrupt. Stop a running program"><br/>
+      <input type="submit" value="CPY" title="CoPY. Copies the instruction from one program memory slot to another">
+      <input type="submit" value="RMI" title="ReMove Instruction. Clears a program memory slot.">
+      <input type="submit" value="DEL" title="Clear program memory"><br/>
+      <input type="submit" value="^" title="go to previous instruction">
+      <input type="submit" value="^^" title="go to first instruction"><br/>
+      <input type="submit" value="v" title="go to next instruction">
+      <input type="submit" value="vv" title="go to last instruction">
+    </center>
   </div>
 
   <div id="registers">
     
     <b>Registers</b><br/>
-
     <input type="submit" value="A">: <div id="regdata">00000000</div><br/>
     <input type="submit" value="B">: <div id="regdata">00000000</div><br/>
     <input type="submit" value="C">: <div id="regdata">00000000</div><br/>
@@ -56,22 +59,19 @@
     NEG: [<div id="flagdata">0</div>] 
     CMP: [<div id="flagdata">0</div>] 
     NEQ: [<div id="flagdata">0</div>] 
-    ___: [<div id="flagdata">0</div>]<br/>
+    <!-- ___: [<div id="flagdata">0</div>]<br/>
     ___: [<div id="flagdata">0</div>] 
     ___: [<div id="flagdata">0</div>] 
-    ___: [<div id="flagdata">0</div>] 
+    ___: [ <div id="flagdata">0</div>] -->
     STW: [<div id="flagdata">0</div>]<br/>
 
     <br/><br/>
-
     <div id="instructions">
-
       <b>Instructions</b><br/>
-      
-      <input type="submit" value="<--"> 
-      <input type="submit" value="RUN"> 
+      <input type="submit" value="<--" title="move to program memory"> 
+      <input type="submit" value="RUN" title="run this instruction"> 
       <div id="instruction"></div>
-      <input type="submit" value="CLR">
+      <input type="submit" value="CLR" title="clear instruction">
       <br/><br/>
       <input type="submit" value="MOV">
       <input type="submit" value="ADD">
@@ -91,77 +91,62 @@
       <input type="submit" value="DEC">
       <input type="submit" value="SET">
       <input type="form" id="inputtxt" value="0" size="8">
-      
-
-
+    </div>
+    <div id="history">
+      <b>History</b> (Last 3)<br/><br>
+      <input type="submit" value="0"> - <div id="histdata"></div><br/>
+      <input type="submit" value="1"> - <div id="histdata"></div><br/>
+      <input type="submit" value="2"> - <div id="histdata"></div><br/>
     </div>
   </div>
   
-  <div id="stack">
-    <b>Stack</b><br/>
-    0x0: <div id="stackdata">00000000</div><br/>
-    0x1: <div id="stackdata">00000000</div><br/>
-    0x2: <div id="stackdata">00000000</div><br/>
-    0x3: <div id="stackdata">00000000</div><br/>
-    0x4: <div id="stackdata">00000000</div><br/>
-    0x5: <div id="stackdata">00000000</div><br/>
-    0x6: <div id="stackdata">00000000</div><br/>
-    0x7: <div id="stackdata">00000000</div><br/>
-    0x8: <div id="stackdata">00000000</div><br/>
-    0x9: <div id="stackdata">00000000</div><br/>
-    0xA: <div id="stackdata">00000000</div><br/>
-    0xB: <div id="stackdata">00000000</div><br/>
-    0xC: <div id="stackdata">00000000</div><br/>
-    0xD: <div id="stackdata">00000000</div><br/>
-    0xE: <div id="stackdata">00000000</div><br/>
-    0xF: <div id="stackdata">00000000</div><br/>
-    <div id="stacklen">0</div>/16
-  </div>
+  <div id="memstack">
+    <div id="stack">
+      <b>Stack</b><br/>
+      0x0&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0x1&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0x2&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0x3&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0x4&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0x5&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0x6&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0x7&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0x8&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0x9&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0xA&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0xB&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0xC&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0xD&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0xE&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      0xF&nbsp;&nbsp;&nbsp;<div id="stackdata">00000000</div><br/>
+      <div id="stacklen">0</div>/16
+    </div>
 
-  <div id="memory">
-    <b>Memory</b><br/>
-    <input type="submit" value="M0x0">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0x1">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0x2">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0x3">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0x4">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0x5">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0x6">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0x7">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0x8">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0x9">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0xA">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0xB">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0xC">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0xD">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0xE">: <div id="memdata">00000000</div><br/>
-    <input type="submit" value="M0xF">: <div id="memdata">00000000</div><br/>
+    <div id="memory">
+      <b>Memory</b><br/>
+      <input type="submit" value="M0x0">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0x1">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0x2">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0x3">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0x4">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0x5">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0x6">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0x7">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0x8">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0x9">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0xA">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0xB">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0xC">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0xD">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0xE">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+      <input type="submit" value="M0xF">&nbsp;&nbsp;&nbsp;<div id="memdata">00000000</div><br/>
+    </div>
   </div>
-
-  <div id="history">
-    <b>History</b> (Last 3)<br/><br>
-    <input type="submit" value="0"> - <div id="histdata"></div><br/>
-    <input type="submit" value="1"> - <div id="histdata"></div><br/>
-    <input type="submit" value="2"> - <div id="histdata"></div><br/>
-  </div>
-    
 </div>
 <div id="levels">
-    <a href="01">Level 01</a> - 
-    <a href="02">Level 02</a> - 
-    <a href="03">Level 03</a> -
-    <a href="04">Level 04</a> -
-    <a href="05">Level 05</a>  
-    <!--<a href="06">Level 06</a> - 
-    <a href="07">Level 07</a> -
-    <a href="08">Level 08</a> <br/> 
-    <a href="09">Level 09</a> -
-    <a href="10">Level 10</a> - 
-    <a href="11">Level 11</a> - 
-    <a href="12">Level 12</a> - 
-    <a href="13">Level 13</a> - 
-    <a href="14">Level 14</a> -
-    <a href="15">Level 15</a> - 
-    <a href="16">Level 16</a> -->
-
+    <a href="https://achi.se">愛智重工</a>, last updated 2020-04
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Levels[<a href="0">0</a>/<a href="1">1</a>/<a href="2">2</a>/<a href="3">3</a>/<a href="4">4</a>/<a href="5">5</a>/<a href="6">6</a>/<a href="7">7</a>/<a href="8">8</a>/<a href="9">9</a>/<a href="A">A</a>/<a href="B">B</a>/<a href="C">C</a>/<a href="D">D</a>/<a href="E">E</a>/<a href="F">F</a>]
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://github.com/Achifaifa/cpyou/blob/master/help.md">Instructions</a>
   </div>

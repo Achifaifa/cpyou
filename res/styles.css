@@ -1,19 +1,47 @@
+@font-face {font-family: 'quizma';src: url('../font/Quizma_Light_Demo.otf');}
+
+a:link {color:#ddd;}
+a:visited {color:#666;}
+
+input[type=submit]{
+    font-family: 'quizma';
+    color: white;
+    border: 1px solid white;
+    border-radius: 3px;
+    background-color: transparent;
+    width: 50px;
+}
+
+input[type=form]{
+    font-family: 'quizma';
+    color: white;
+    border: 1px solid white;
+    border-radius: 3px;
+    background-color: transparent;
+    width: 50px;
+    height: 18px;
+}
+
 #everything{
-  width: 1000px;
-  background: #AAA;
+  width: 100%;
+  background: #000;
+  color: white;
   position: relative;
   text-align: center;
-  margin: auto;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
   padding-top: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
   margin-top: 0px;
   border: 1px solid;
   display: table;
   clear: both;
+  font-family: quizma;
 }
 
 #help{
-  width: 800px;
-  background: #AAA;
+  width: 80%;
   position: relative;
   text-align: left;
   margin: auto;
@@ -25,9 +53,10 @@
 }
 
 #program{
+  box-sizing:border-box;
+  display: block;
   border-top: 1px solid;
-  width: 180px;
-  background: #AAA;
+  width: 25%;
   padding-top: 10px;
   padding-bottom: 10px;
   float: left;
@@ -36,17 +65,17 @@
 }
 
 #registers{
-  width: 400px;
-  background: #AAA;
+  overflow-x: hidden;
+  box-sizing:border-box;
+  display: block-inline;
+  width: 35%;
   border-top: 1px solid;
   padding-top: 10px;
   float: left;
-
 }
 
 #instructions{
-  width: 400px;
-  background: #CCC;
+  width: 100%;
   float: left;
   text-align: center;
   padding-top: 10px;
@@ -54,8 +83,7 @@
 }
 
 #history{
-  width: 300px;
-  background: #CCC;  
+  width: 100%;
   float: left;
   text-align: left;
   padding-left: 100px;
@@ -63,19 +91,22 @@
   padding-top: 10px;
 }
 
-#memory{
-  width: 200px;
-  height: 550px;
-  background: #AAA;
+#memstack{
+  box-sizing: border-box;
+  width: 40%;
   float: right;
+}
+
+#memory{
+  width: 50%;
+  float: left;
   text-align: center;
   border-top: 1px solid;
   padding-top: 10px;
 }
 
 #stack{
-  width: 200px;
-  background: #AAA;
+  width: 50%;
   text-align: center;
   float: right;
   border-top: 1px solid;
@@ -83,12 +114,13 @@
 }
 
 #levels{
-  width: 1000px;
-  background: #888;
+  font-size: 11;
+  font-family: quizma;
+  width: 100%;
   bottom: 0px;
+  color:white;
   padding-top: 5px;
   padding-bottom: 5px;
-  border: 1px solid;
   margin-left: -1px;
   position:relative;
   margin: auto;
@@ -96,11 +128,16 @@
 }
 
 #stackdata{
+  width: 70px;
+  text-transform: uppercase;
   display: inline-block;
+  font-family: 'courier';
 }
 
 #programdata{
+  text-transform: uppercase;
   display: inline-block;
+  font-family: 'courier';
 }
 
 #stacklen{
@@ -108,19 +145,25 @@
 }
 
 #memdata{
+  width: 70px;
+  text-transform: uppercase;
   display: inline-block;
+  font-family: 'courier';
 }
 
 #regdata{
   display: inline-block;
+  font-family: 'courier';
 }
 
 #histdata{
   display: inline-block;
+  font-family: 'courier';
 }
 
 #flagdata{
   display: inline-block;
+  font-family: 'courier';
 }
 
 #goal{
@@ -137,7 +180,7 @@
 
 #instruction{
   display: inline-block;
-  width: 150px;
+  width: 35%;
 }
 
 #inputtxt{
