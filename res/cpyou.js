@@ -85,7 +85,7 @@ levels=[
   "condition": "state['memory']['M0xF']==0x012a1637"
 },
 { "level": "5",
-  "goal": "not implemented",
+  "goal": "Calculate the sum of the first 100 natural numbers. Move result to M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
                 "C":0x00000000, 
@@ -98,10 +98,10 @@ levels=[
   "stack": [],
   "memory": {},
   "instruction": [],
-  "condition": "state['memory']['M0xF']==0x012a1637"
+  "condition": "state['memory']['M0xF']==0x000013BA"
 },
 { "level": "6",
-  "goal": "not implemented",
+  "goal": "Compare all numbers in memory and place the largest in M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
                 "C":0x00000000, 
@@ -112,9 +112,9 @@ levels=[
   "program": {},
   "ppointer": 0,
   "stack": [],
-  "memory": {},
+  "memory": {"M0x0": 0x000AAAAA, "M0x1": 0x000E9901, "M0x2": 0x00000F01, "M0x3": 0x00012376, "M0x4": 0x0009AEAB},
   "instruction": [],
-  "condition": "state['memory']['M0xF']==0x012a1637"
+  "condition": "state['memory']['M0xF']==0x000E9901"
 },
 { "level": "7",
   "goal": "not implemented",
