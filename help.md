@@ -12,20 +12,20 @@ Once a level has been successfully completed, a popup will show up to let you kn
 
 You don't need to be an assembly expert to play this, but you'll need to learn some things before using it. Here are some general tips and tricks, and things you'll find weird if it's your first time.
 
-* All the data you see his in hexadecimal (Base 16)
+### All the data you see his in hexadecimal (Base 16)
 
 Everything in the memory, registers, etc is in hexadecimal format. Hexadecimal (hex) is base16, and like base10 uses the symbols 0-9, it uses 16 symbols: numbers 0-9, and letters A-F. So, for example, 9-10-11 in hexadecimal would be 9-A-B. If you are wondering why, you can check this ![link](https://en.wikipedia.org/wiki/Hexadecimal#Binary_conversion)
 
-* You only have 2 slots to do everything
+### You only have 2 slots to do everything
 
 If you have programmed with a higher level programming language you'll be used to working with as many variables as you want. In assembly you work with a limited number of slots you can put your information in. In this case, you have two registers, A and B, that you must use to process the information and complete the level.
 If you are doing something and need to add two numbers, you'll need to save your progress somewhere else.
 
-* You have a stack
+### You have a stack
 
 Even if you have programmed something before, chances are you haven't bothered using stacks, but you'll need them here. More info further in this document.
 
-* Instructions have weird names
+### Instructions have weird names
 
 Most of the time the instructions assume you've already placed what you want to process correctly in the registers, and will use whatever is in them as "arguments". To add two numbers A and B you'll need to put A in one register and B in another, and then run `ADD`, which will add whatever is in A and B together and will put it in R
 
