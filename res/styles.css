@@ -127,11 +127,13 @@ input[type=form]{
 }
 
 #stackdata{
+  width: 70px;
   display: inline-block;
   font-family: 'monospace';
 }
 
 #programdata{
+  width: 70px;
   display: inline-block;
   font-family: 'monospace';
 }
@@ -141,6 +143,7 @@ input[type=form]{
 }
 
 #memdata{
+  width: 70px;
   display: inline-block;
   font-family: 'monospace';
 }

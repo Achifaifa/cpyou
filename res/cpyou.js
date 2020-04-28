@@ -19,7 +19,6 @@ levels=[
   "memory": {"M0x0": 0x1009F6AB, "M0x1": 0x55610FFF, "M0x2": 0x0055ABBF},
   "instruction": [],
   "condition": "state['memory']['M0xF']==0x65c0b269"
-  
 },
 { "level": "1",
   "goal": "Calculate M0x0 % M0x1 and put the result in M0xF",
@@ -36,7 +35,6 @@ levels=[
   "memory": {"M0x0": 0x02107010, "M0x1": 0x0109AE00},
   "instruction": [],
   "condition": "state['memory']['M0xF']==0x0106c210"
-  
 },
 { "level": "2",
   "goal": "Multiply M0x0 by 10 and put the result in M0xF",
@@ -85,7 +83,184 @@ levels=[
   "memory": {"M0x0": 0x0009EEAB, "M0x1": 0x0009F0AE, "M0x2": 0x0000000F},
   "instruction": [],
   "condition": "state['memory']['M0xF']==0x012a1637"
-}]
+},
+{ "level": "5",
+  "goal": "not implemented",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x012a1637"
+},
+{ "level": "6",
+  "goal": "not implemented",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x012a1637"
+},
+{ "level": "7",
+  "goal": "not implemented",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x012a1637"
+},
+{ "level": "8",
+  "goal": "not implemented",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x012a1637"
+},
+{ "level": "9",
+  "goal": "not implemented",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x012a1637"
+},
+{ "level": "A",
+  "goal": "not implemented",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x012a1637"
+},
+{ "level": "B",
+  "goal": "not implemented",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x012a1637"
+},
+{ "level": "C",
+  "goal": "not implemented",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x012a1637"
+},
+{ "level": "D",
+  "goal": "not implemented",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x012a1637"
+},
+{ "level": "E",
+  "goal": "not implemented",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x012a1637"
+},
+{ "level": "F",
+  "goal": "not implemented",
+  "registers":{ "A":0x00000000, 
+                "B":0x00000000, 
+                "C":0x00000000, 
+                "R":0x00000000
+              },
+  "flags": [0, 0, 0, 0, 0, 0, 0, 0],
+  "history": [],
+  "program": {},
+  "ppointer": 0,
+  "stack": [],
+  "memory": {},
+  "instruction": [],
+  "condition": "state['memory']['M0xF']==0x012a1637"
+},
+]
 
 // Initial state
 initialstate={ 
@@ -203,16 +378,20 @@ $("#everything #help").on("click", gotohelp);
 // Intercept links
 $('body').delegate('a', 'click', function(event) {
   event.preventDefault();
-  lvl=event.currentTarget.href.slice(-2)
+  var nav=event.currentTarget.href.split("/").pop()
 
-  // Show/hide help
-  if (lvl=="lp"){
-    gotohelp();
+  var clvl=parseInt(state.level,16)
+  if (nav=="prevlv" && state.level!="0")
+  {
+    loadlevel((clvl-1).toString(16))
   }
-
-  // Process level links
-  else {
-    loadlevel(parseInt(lvl))
+  else if (nav=="nextlv" && state.level!="F")
+  {
+    loadlevel((clvl+1).toString(16))
+  }
+  else
+  {
+    loadlevel(nav)
   }
 });
 
@@ -226,7 +405,7 @@ function gotohelp(){
 // Load a new level
 function loadlevel(n){
 
-  nlvl=levels[n-1]
+  nlvl=levels[parseInt(n,16)]
   if (nlvl!=undefined) {
     state=jQuery.extend(true, {}, nlvl)
     update()
@@ -694,6 +873,5 @@ function update(check){
 }
 
 // Initial update of the screen
-update(1);
-loadlevel(1);
+loadlevel(0);
 });//end of ready
