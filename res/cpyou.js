@@ -85,7 +85,7 @@ levels=[
   "condition": "state['memory']['M0xF']==0x012a1637"
 },
 { "level": "5",
-  "goal": "Calculate the sum of the first 100 natural numbers. Move result to M0xF",
+  "goal": "Calculate the sum of the first 100 natural numbers; Move result to M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
                 "C":0x00000000, 
@@ -117,7 +117,7 @@ levels=[
   "condition": "state['memory']['M0xF']==0x000E9901"
 },
 { "level": "7",
-  "goal": "not implemented",
+  "goal": "Count how many 0x0000FFFF there are in memory; Put the result in M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
                 "C":0x00000000, 
@@ -128,12 +128,12 @@ levels=[
   "program": {},
   "ppointer": 0,
   "stack": [],
-  "memory": {},
+  "memory": {"M0x0": 0x0000FFFF, "M0x1": 0x000E9901, "M0x2": 0x00000F01, "M0x3": 0x00012376, "M0x4": 0x0009AEAB, "M0x5": 0x0000FFFF, "M0x6": 0x0000FFFF, "M0x7": 0x00061C12, "M0x8": 0x0000D500, "M0x9": 0x0000FFFF, "M0xA": 0x00001234, "M0xB": 0x0509F990, "M0xC": 0x0000FFFF},
   "instruction": [],
-  "condition": "state['memory']['M0xF']==0x012a1637"
+  "condition": "state['memory']['M0xF']==0x00000005"
 },
 { "level": "8",
-  "goal": "not implemented",
+  "goal": "Calculate the sum of the first 10 even numbers; Move result to M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
                 "C":0x00000000, 
@@ -146,10 +146,10 @@ levels=[
   "stack": [],
   "memory": {},
   "instruction": [],
-  "condition": "state['memory']['M0xF']==0x012a1637"
+  "condition": "state['memory']['M0xF']==0x0000006E"
 },
 { "level": "9",
-  "goal": "not implemented",
+  "goal": "Rearrange the numbers in memory to descending value",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
                 "C":0x00000000, 
@@ -160,12 +160,12 @@ levels=[
   "program": {},
   "ppointer": 0,
   "stack": [],
-  "memory": {},
+  "memory": {"M0x0": 0x00000001, "M0x1": 0x00000002, "M0x2": 0x00000003, "M0x3": 0x00000004, "M0x4": 0x00000005},
   "instruction": [],
-  "condition": "state['memory']['M0xF']==0x012a1637"
+  "condition": "state['memory']['M0x0']==0x00000005 && state['memory']['M0x1']==0x00000004 && state['memory']['M0x2']==0x00000003 && state['memory']['M0x3']==0x00000002 && state['memory']['M0x4']==0x00000002 && state['memory']['M0x5']==0x00000001"
 },
 { "level": "A",
-  "goal": "not implemented",
+  "goal": "Add the numbers in even memory positions; Move result to M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
                 "C":0x00000000, 
@@ -176,12 +176,12 @@ levels=[
   "program": {},
   "ppointer": 0,
   "stack": [],
-  "memory": {},
+  "memory": {"M0x0": 0x00007701, "M0x1": 0x000E9901, "M0x2": 0x00000F01, "M0x3": 0x00012376, "M0x4": 0x0009AEAB, "M0x5": 0x0000FABF, "M0x6": 0x00088911, "M0x7": 0x00061C12, "M0x8": 0x0000D500, "M0x9": 0x0F090102, "M0xA": 0x00001234, "M0xB": 0x0509F990, "M0xC": 0x00055D1A},
   "instruction": [],
-  "condition": "state['memory']['M0xF']==0x012a1637"
+  "condition": "state['memory']['M0xF']==0x0019020C"
 },
 { "level": "B",
-  "goal": "not implemented",
+  "goal": "Calculate ((M0x0*M0x1)/M0x2)+M0x3; move result to M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
                 "C":0x00000000, 
@@ -192,12 +192,12 @@ levels=[
   "program": {},
   "ppointer": 0,
   "stack": [],
-  "memory": {},
+  "memory": {"M0x0": 0x00002376,"M0x1": 0x0000FABF, "M0x2": 0x00061C12, "M0x3": 0x0000D500},
   "instruction": [],
-  "condition": "state['memory']['M0xF']==0x012a1637"
+  "condition": "state['memory']['M0xF']==0x0000DAB0"
 },
 { "level": "C",
-  "goal": "not implemented",
+  "goal": "Add and substract the contents of memory (M0x0+M0x1-M0x2+M0x3,,,); move result to M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
                 "C":0x00000000, 
@@ -208,12 +208,12 @@ levels=[
   "program": {},
   "ppointer": 0,
   "stack": [],
-  "memory": {},
+  "memory": {"M0x0": 0x00007701, "M0x1": 0x000E9901, "M0x2": 0x00000F01, "M0x3": 0x00012376, "M0x4": 0x0009AEAB, "M0x5": 0x0000FABF, "M0x6": 0x00088911, "M0x7": 0x00061C12, "M0x8": 0x0000D500, "M0x9": 0x0F090102, "M0xA": 0x00001234, "M0xB": 0x0509F990, "M0xC": 0x00055D1A},
   "instruction": [],
-  "condition": "state['memory']['M0xF']==0x012a1637"
+  "condition": "state['memory']['M0xF']==0x0F11B9D0"
 },
 { "level": "D",
-  "goal": "not implemented",
+  "goal": "Calculate (M0x0/(M0x1+M0x2))+M0x3; Move result to M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
                 "C":0x00000000, 
@@ -224,12 +224,12 @@ levels=[
   "program": {},
   "ppointer": 0,
   "stack": [],
-  "memory": {},
+  "memory": {"M0x0": 0x00012376, "M0x1": 0x0009AEAB, "M0x2": 0x0000FABF, "M0x3": 0x0410FF88},
   "instruction": [],
-  "condition": "state['memory']['M0xF']==0x012a1637"
+  "condition": "state['memory']['M0xF']==0x0410FF88"
 },
 { "level": "E",
-  "goal": "not implemented",
+  "goal": "Add all numbers in memory, counting how many times the addition overflows; Move count to M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
                 "C":0x00000000, 
@@ -240,12 +240,16 @@ levels=[
   "program": {},
   "ppointer": 0,
   "stack": [],
-  "memory": {},
+  "memory": {"M0x0": 0x0F117701, "M0x1": 0x100E9901, "M0x2": 0x53350F01, "M0x3": 0x00012376, "M0x4": 0x0009AEAB, "M0x5": 0x000000BF, "M0x6": 0x00002111, "M0x7": 0x00000012, "M0x8": 0xFF40D500, "M0x9": 0x0F090102, "M0xA": 0xEDC31234, "M0xB": 0x0509F990, "M0xC": 0x00055D1A},
   "instruction": [],
-  "condition": "state['memory']['M0xF']==0x012a1637"
+  "condition": "state['memory']['M0xF']==0x00000002"
 },
+// Making levels sucks and honestly what the fuck is the point, 
+// no one is going to play this game past level 3. If you are 
+// reading this feel free so send me a new level, I'm all out of 
+// ideas.
 { "level": "F",
-  "goal": "not implemented",
+  "goal": "MOV 0x0000000F to pay respects,", 
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
                 "C":0x00000000, 
@@ -258,7 +262,7 @@ levels=[
   "stack": [],
   "memory": {},
   "instruction": [],
-  "condition": "state['memory']['M0xF']==0x012a1637"
+  "condition": "state['memory']['M0xF']==0x0000000F"
 },
 ]
 
