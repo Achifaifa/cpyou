@@ -341,6 +341,7 @@ function modprog(inst){
       tbe=state["program"][inst]
       if (tbe!=undefined){
         runinst(tbe, 1)
+        $("#progstatus").text("Idle")
       }
     }
     else if (currentpr=="Copy"){

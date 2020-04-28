@@ -1,7 +1,7 @@
 <meta charset="UTF-8"> 
-<link rel=stylesheet href="./styles.css" type="text/css">
+<link rel=stylesheet href="./res/styles.css" type="text/css">
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="./cpyou.js"></script>
+<script src="./res/cpyou.js"></script>
 <title>CPYou</title>
 
 <body bgcolor="#000000">
@@ -32,15 +32,17 @@
     <br/>
     <center><div id="progstatus">Idle</div></center>
     <br/>
-    <input type="submit" value="RSI">
-    <input type="submit" value="STP"><br/>
-    <input type="submit" value="EXE">
-    <input type="submit" value="INT"><br/>
-    <input type="submit" value="CPY">
-    <input type="submit" value="RMI">
-    <input type="submit" value="DEL"><br/>
-    <input type="submit" value="^^"><input type="submit" value="^">
-    <input type="submit" value="v"><input type="submit" value="vv">
+    <input type="submit" value="RSI" title="Run Single Instruction">
+    <input type="submit" value="STP" title="STeP. Run single instruction and advance pointer"><br/>
+    <input type="submit" value="EXE" title="EXEcute. Run all instructions in program memory starting at the current instruction pointer">
+    <input type="submit" value="INT" title="INTerrupt. Stop a running program"><br/>
+    <input type="submit" value="CPY" title="CoPY. Copies the instruction from one program memory slot to another">
+    <input type="submit" value="RMI" title="ReMove Instruction. Clears a program memory slot.">
+    <input type="submit" value="DEL" title="Clear program memory"><br/>
+    <input type="submit" value="^^" title="go to first instruction">
+    <input type="submit" value="^" title="go to previous instruction">
+    <input type="submit" value="v" title="go to next instruction">
+    <input type="submit" value="vv" title="go to last instruction">
   </div>
 
   <div id="registers">
@@ -56,10 +58,10 @@
     NEG: [<div id="flagdata">0</div>] 
     CMP: [<div id="flagdata">0</div>] 
     NEQ: [<div id="flagdata">0</div>] 
-    ___: [<div id="flagdata">0</div>]<br/>
+    <!-- ___: [<div id="flagdata">0</div>]<br/>
     ___: [<div id="flagdata">0</div>] 
     ___: [<div id="flagdata">0</div>] 
-    ___: [<div id="flagdata">0</div>] 
+    ___: [ --><div id="flagdata">0</div>] 
     STW: [<div id="flagdata">0</div>]<br/>
 
     <br/><br/>
@@ -68,10 +70,10 @@
 
       <b>Instructions</b><br/>
       
-      <input type="submit" value="<--"> 
-      <input type="submit" value="RUN"> 
+      <input type="submit" value="<--" title="move to program memory"> 
+      <input type="submit" value="RUN" title="run this instruction"> 
       <div id="instruction"></div>
-      <input type="submit" value="CLR">
+      <input type="submit" value="CLR" title="clear instruction">
       <br/><br/>
       <input type="submit" value="MOV">
       <input type="submit" value="ADD">
