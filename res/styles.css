@@ -1,8 +1,31 @@
 @font-face {font-family: 'quizma';src: url('../font/Quizma_Light_Demo.otf');}
 
+a:link {color:#ddd;}
+a:visited {color:#666;}
+
+input[type=submit]{
+    font-family: 'quizma';
+    color: white;
+    border: 1px solid white;
+    border-radius: 3px;
+    background-color: transparent;
+    width: 50px;
+}
+
+input[type=form]{
+    font-family: 'quizma';
+    color: white;
+    border: 1px solid white;
+    border-radius: 3px;
+    background-color: transparent;
+    width: 50px;
+    height: 18px;
+}
+
 #everything{
   width: 100%;
-  background: #AAA;
+  background: #000;
+  color: white;
   position: relative;
   text-align: center;
   margin-left: 0 auto;
@@ -19,7 +42,6 @@
 
 #help{
   width: 80%;
-  background: #AAA;
   position: relative;
   text-align: left;
   margin: auto;
@@ -35,7 +57,6 @@
   display: block;
   border-top: 1px solid;
   width: 20%;
-  background: #AAA;
   padding-top: 10px;
   padding-bottom: 10px;
   float: left;
@@ -48,7 +69,6 @@
   box-sizing:border-box;
   display: block-inline;
   width: 40%;
-  background: #AAA;
   border-top: 1px solid;
   padding-top: 10px;
   float: left;
@@ -56,7 +76,6 @@
 
 #instructions{
   width: 100%;
-  background: #CCC;
   float: left;
   text-align: center;
   padding-top: 10px;
@@ -65,7 +84,6 @@
 
 #history{
   width: 100%;
-  background: #CCC;  
   float: left;
   text-align: left;
   padding-left: 100px;
@@ -81,7 +99,6 @@
 
 #memory{
   width: 50%;
-  background: #AAA;
   float: left;
   text-align: center;
   border-top: 1px solid;
@@ -90,7 +107,6 @@
 
 #stack{
   width: 50%;
-  background: #AAA;
   text-align: center;
   float: right;
   border-top: 1px solid;
@@ -99,11 +115,11 @@
 
 #levels{
   width: 100%;
-  background: #888;
   bottom: 0px;
+  color:white;
   padding-top: 5px;
   padding-bottom: 5px;
-  border: 1px solid;
+/*  border: 1px solid;*/  
   margin-left: -1px;
   position:relative;
   margin: auto;
@@ -112,10 +128,12 @@
 
 #stackdata{
   display: inline-block;
+  font-family: 'monospace';
 }
 
 #programdata{
   display: inline-block;
+  font-family: 'monospace';
 }
 
 #stacklen{
@@ -124,18 +142,22 @@
 
 #memdata{
   display: inline-block;
+  font-family: 'monospace';
 }
 
 #regdata{
   display: inline-block;
+  font-family: 'monospace';
 }
 
 #histdata{
   display: inline-block;
+  font-family: 'monospace';
 }
 
 #flagdata{
   display: inline-block;
+  font-family: 'monospace';
 }
 
 #goal{

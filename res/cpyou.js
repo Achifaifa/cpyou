@@ -4,7 +4,7 @@ memaddr=["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "
 helpon=0;
 running=0;
 levels=[
-{ "level": "01",
+{ "level": "0",
   "goal": "Add the numbers in memory, put the result in M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
@@ -21,7 +21,7 @@ levels=[
   "condition": "state['memory']['M0xF']==0x65c0b269"
   
 },
-{ "level": "02",
+{ "level": "1",
   "goal": "Calculate M0x0 % M0x1 and put the result in M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
@@ -38,7 +38,7 @@ levels=[
   "condition": "state['memory']['M0xF']==0x0106c210"
   
 },
-{ "level": "03",
+{ "level": "2",
   "goal": "Multiply M0x0 by 10 and put the result in M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
@@ -54,7 +54,7 @@ levels=[
   "instruction": [],
   "condition": "state['memory']['M0xF']==0xa063a2ae"
 },
-{ "level": "04",
+{ "level": "3",
   "goal": "Divide M0x0 and M0x1, put the result in M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
@@ -70,7 +70,7 @@ levels=[
   "instruction": [],
   "condition": "state['memory']['M0xF']==0x00000011"
 },
-{ "level": "05",
+{ "level": "4",
   "goal": "Calculate (M0x0 + M0x1) x M0x2; move the result to M0xF",
   "registers":{ "A":0x00000000, 
                 "B":0x00000000, 
@@ -499,7 +499,6 @@ function runinst(inst, source){
     if (["A", "B", "R", "C"].indexOf(inst[2])!=-1) {
       to="registers"
     }
-
     state[to][inst[2]]=state[from][inst[1]]
   }
 
@@ -641,7 +640,7 @@ function update(check){
     $("#registers #flagdata").eq(i).text(state["flags"][i])
 
     // Reset all program
-    $("#program #programdata").eq(i).text("--")
+    $("#program #programdata").eq(i).text("NOP")
   }
 
   memaddr.forEach(function(i){
@@ -658,7 +657,7 @@ function update(check){
     if (val!=undefined){
       $("#program #programdata").eq(lpoint).text( val.join(" ") )
     }
-    $("#program #programdata").eq(lpoint).css("color", "#000000")
+    $("#program #programdata").eq(lpoint).css("color", "white")
 
     // Update memory from dict
     val=state["memory"]["M0x"+i]
@@ -669,7 +668,8 @@ function update(check){
 
   // Highlight current instruction
   temptxt=$("#program #programdata").eq(state["ppointer"]).text()
-  $("#program #programdata").eq(state["ppointer"]).text(">"+temptxt)
+  //$("#program #programdata").eq(state["ppointer"]).text(">"+temptxt)
+  $("#program #programdata").eq(state["ppointer"]).css("color","#999999")
 
   // Update level info
   $("#levelno").text(state["level"])
@@ -695,5 +695,5 @@ function update(check){
 
 // Initial update of the screen
 update(1);
-
+loadlevel(1);
 });//end of ready
