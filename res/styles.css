@@ -1,18 +1,24 @@
+@font-face {font-family: 'quizma';src: url('../font/Quizma_Light_Demo.otf');}
+
 #everything{
-  width: 1000px;
+  width: 100%;
   background: #AAA;
   position: relative;
   text-align: center;
-  margin: auto;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
   padding-top: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
   margin-top: 0px;
   border: 1px solid;
   display: table;
   clear: both;
+  font-family: quizma;
 }
 
 #help{
-  width: 800px;
+  width: 80%;
   background: #AAA;
   position: relative;
   text-align: left;
@@ -25,8 +31,10 @@
 }
 
 #program{
+  box-sizing:border-box;
+  display: block;
   border-top: 1px solid;
-  width: 180px;
+  width: 20%;
   background: #AAA;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -36,16 +44,18 @@
 }
 
 #registers{
-  width: 400px;
+  overflow-x: hidden;
+  box-sizing:border-box;
+  display: block-inline;
+  width: 40%;
   background: #AAA;
   border-top: 1px solid;
   padding-top: 10px;
   float: left;
-
 }
 
 #instructions{
-  width: 400px;
+  width: 100%;
   background: #CCC;
   float: left;
   text-align: center;
@@ -54,7 +64,7 @@
 }
 
 #history{
-  width: 300px;
+  width: 100%;
   background: #CCC;  
   float: left;
   text-align: left;
@@ -63,18 +73,23 @@
   padding-top: 10px;
 }
 
-#memory{
-  width: 200px;
-  height: 550px;
-  background: #AAA;
+#memstack{
+  box-sizing: border-box;
+  width: 40%;
   float: right;
+}
+
+#memory{
+  width: 50%;
+  background: #AAA;
+  float: left;
   text-align: center;
   border-top: 1px solid;
   padding-top: 10px;
 }
 
 #stack{
-  width: 200px;
+  width: 50%;
   background: #AAA;
   text-align: center;
   float: right;
@@ -83,7 +98,7 @@
 }
 
 #levels{
-  width: 1000px;
+  width: 100%;
   background: #888;
   bottom: 0px;
   padding-top: 5px;
@@ -137,7 +152,7 @@
 
 #instruction{
   display: inline-block;
-  width: 150px;
+  width: 50%;
 }
 
 #inputtxt{
